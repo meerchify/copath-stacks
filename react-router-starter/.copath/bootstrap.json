@@ -1,0 +1,16 @@
+{
+  "version": 2,
+  "services": [
+    {
+      "id": "frontend",
+      "name": "Web (React Router)",
+      "framework": "react-router",
+      "cwd": ".",
+      "install": "pnpm install",
+      "skipInstallIf": "node_modules",
+      "dev": "pnpm dev",
+      "port": 5173
+    }
+  ],
+  "artifacts": []
+}

@@ -1,0 +1,16 @@
+{
+  "version": 2,
+  "services": [
+    {
+      "id": "frontend",
+      "name": "Web (Astro)",
+      "framework": "astro",
+      "cwd": ".",
+      "install": "pnpm install",
+      "skipInstallIf": "node_modules",
+      "dev": "pnpm dev",
+      "port": 4321
+    }
+  ],
+  "artifacts": []
+}

@@ -1,0 +1,16 @@
+{
+  "version": 2,
+  "services": [
+    {
+      "id": "frontend",
+      "name": "Web (Vite)",
+      "framework": "vite",
+      "cwd": ".",
+      "install": "pnpm install",
+      "skipInstallIf": "node_modules",
+      "dev": "pnpm dev",
+      "port": 5173
+    }
+  ],
+  "artifacts": []
+}

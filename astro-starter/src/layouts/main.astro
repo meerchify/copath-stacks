@@ -8,6 +8,14 @@ import "@/styles/global.css"
     <meta name="viewport" content="width=device-width" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <title>Astro App</title>
+    <script is:inline>
+      // Apply the saved (or system) theme before paint so dark mode never flashes.
+      try {
+        const t = localStorage.getItem("theme");
+        if (t === "dark" || (!t && matchMedia("(prefers-color-scheme: dark)").matches))
+          document.documentElement.classList.add("dark");
+      } catch (e) {}
+    </script>
   </head>
   <body>
     <slot />
