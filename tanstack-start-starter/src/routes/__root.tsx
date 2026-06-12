@@ -38,10 +38,10 @@ function RootDocument({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
-        {/* Apply the saved (or system) theme before paint so dark mode never flashes. */}
+        {/* Default to dark mode; only honor an explicit "light" choice. Applied before paint so the theme never flashes. */}
         <script
           dangerouslySetInnerHTML={{
-            __html: `try{var t=localStorage.getItem("theme");if(t==="dark"||(!t&&matchMedia("(prefers-color-scheme: dark)").matches))document.documentElement.classList.add("dark");}catch(e){}`,
+            __html: `try{if(localStorage.getItem("theme")!=="light")document.documentElement.classList.add("dark");}catch(e){document.documentElement.classList.add("dark");}`,
           }}
         />
         <HeadContent />

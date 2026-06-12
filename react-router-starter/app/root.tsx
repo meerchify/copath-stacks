@@ -16,10 +16,10 @@ export function Layout({ children }: { children: React.ReactNode }) {
       <head>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        {/* Apply the saved (or system) theme before paint so dark mode never flashes. */}
+        {/* Default to dark mode; only honor an explicit "light" choice. Applied before paint so the theme never flashes. */}
         <script
           dangerouslySetInnerHTML={{
-            __html: `try{var t=localStorage.getItem("theme");if(t==="dark"||(!t&&matchMedia("(prefers-color-scheme: dark)").matches))document.documentElement.classList.add("dark");}catch(e){}`,
+            __html: `try{if(localStorage.getItem("theme")!=="light")document.documentElement.classList.add("dark");}catch(e){document.documentElement.classList.add("dark");}`,
           }}
         />
         <Meta />
