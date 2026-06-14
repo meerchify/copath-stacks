@@ -1,0 +1,17 @@
+{
+  "version": 2,
+  "services": [
+    {
+      "id": "frontend",
+      "name": "Storefront (Next.js + Shopify)",
+      "framework": "nextjs",
+      "cwd": ".",
+      "install": "pnpm install",
+      "skipInstallIf": "node_modules",
+      "dev": "next dev -p 4000",
+      "port": 4000,
+      "proxyPreservePath": true
+    }
+  ],
+  "artifacts": []
+}

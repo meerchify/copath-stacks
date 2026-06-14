@@ -1,0 +1,28 @@
+{
+  "version": 2,
+  "services": [
+    {
+      "id": "backend",
+      "name": "Medusa backend + admin",
+      "framework": "medusa",
+      "cwd": "apps/backend",
+      "install": "pnpm install && (copath-db-up || true) && pnpm medusa db:migrate && (pnpm medusa user -e admin@test.com -p supersecret || true)",
+      "skipInstallIf": "node_modules/.bin/medusa",
+      "dev": "pnpm medusa develop",
+      "port": 9000,
+      "proxyPreservePath": false
+    },
+    {
+      "id": "storefront",
+      "name": "Storefront (Next.js)",
+      "framework": "nextjs",
+      "cwd": "apps/storefront",
+      "install": "pnpm install",
+      "skipInstallIf": "node_modules",
+      "dev": "next dev -p 8000",
+      "port": 8000,
+      "proxyPreservePath": true
+    }
+  ],
+  "artifacts": []
+}
