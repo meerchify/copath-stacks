@@ -1,75 +1,104 @@
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fvercel%2Fcommerce&project-name=commerce&repo-name=commerce&demo-title=Next.js%20Commerce&demo-url=https%3A%2F%2Fdemo.vercel.store&demo-image=https%3A%2F%2Fbigcommerce-demo-asset-ksvtgfvnd.vercel.app%2Fbigcommerce.png&products=%255B%257B%2522type%2522%253A%2522integration%2522%252C%2522protocol%2522%253A%2522other%2522%252C%2522productSlug%2522%253A%2522shopify%2522%252C%2522integrationSlug%2522%253A%2522shopify%2522%257D%255D&env=COMPANY_NAME,SITE_NAME)
+# Universal Store — CoPath starter
 
-# Next.js Commerce
+A fast, server-rendered **universal storefront** built on Next.js (App Router)
+and the **Shopify Storefront API**. Products, search, cart, and checkout work out
+of the box — checkout runs on Shopify, so there's no backend to host.
 
-A high-performance, server-rendered Next.js App Router ecommerce application.
+It boots immediately in **demo mode** (no products) and turns into a real shop the
+moment you connect your store. The UI uses the shared CoPath design tokens, so the
+theme and font pickers re-skin it like every other CoPath stack.
 
-This template uses React Server Components, Server Actions, `Suspense`, `useOptimistic`, and more.
+---
 
-<h3 id="v1-note"></h3>
+## 1. Boot it
 
-> Note: Looking for Next.js Commerce v1? View the [code](https://github.com/vercel/commerce/tree/v1), [demo](https://commerce-v1.vercel.store), and [release notes](https://github.com/vercel/commerce/releases/tag/v1).
+Fork the **Shopify storefront (Next.js)** starter in the CoPath Library. The dev
+preview comes up in demo mode and shows a "Connect your store" hint on the home
+page — that's expected until you add credentials.
 
-## Providers
+## 2. Connect your Shopify store (environment variables)
 
-Vercel will only be actively maintaining a Shopify version [as outlined in our vision and strategy for Next.js Commerce](https://github.com/vercel/commerce/pull/966).
+This starter reads its configuration from environment variables. In CoPath you
+add them in the app, **not** in a file:
 
-Vercel is happy to partner and work with any commerce provider to help them get a similar template up and running and listed below. Alternative providers should be able to fork this repository and swap out the `lib/shopify` file with their own implementation while leaving the rest of the template mostly unchanged.
+> **App Details → Publish → Environment variables**
 
-- Shopify (this repository)
-- [BigCommerce](https://github.com/bigcommerce/nextjs-commerce) ([Demo](https://next-commerce-v2.vercel.app/))
-- [Ecwid by Lightspeed](https://github.com/Ecwid/ecwid-nextjs-commerce/) ([Demo](https://ecwid-nextjs-commerce.vercel.app/))
-- [Geins](https://github.com/geins-io/vercel-nextjs-commerce) ([Demo](https://geins-nextjs-commerce-starter.vercel.app/))
-- [Medusa](https://github.com/medusajs/vercel-commerce) ([Demo](https://medusa-nextjs-commerce.vercel.app/))
-- [Prodigy Commerce](https://github.com/prodigycommerce/nextjs-commerce) ([Demo](https://prodigy-nextjs-commerce.vercel.app/))
-- [Saleor](https://github.com/saleor/nextjs-commerce) ([Demo](https://saleor-commerce.vercel.app/))
-- [Shopware](https://github.com/shopwareLabs/vercel-commerce) ([Demo](https://shopware-vercel-commerce-react.vercel.app/))
-- [Swell](https://github.com/swellstores/verswell-commerce) ([Demo](https://verswell-commerce.vercel.app/))
-- [Umbraco](https://github.com/umbraco/Umbraco.VercelCommerce.Demo) ([Demo](https://vercel-commerce-demo.umbraco.com/))
-- [Wix](https://github.com/wix/headless-templates/tree/main/nextjs/commerce) ([Demo](https://wix-nextjs-commerce.vercel.app/))
-- [Fourthwall](https://github.com/FourthwallHQ/vercel-commerce) ([Demo](https://vercel-storefront.fourthwall.app/))
+Add these two (set **Target** to `Development` or `All` so the live preview picks
+them up):
 
-> Note: Providers, if you are looking to use similar products for your demo, you can [download these assets](https://drive.google.com/file/d/1q_bKerjrwZgHwCw0ovfUMW6He9VtepO_/view?usp=sharing).
+| Variable | Value |
+| --- | --- |
+| `SHOPIFY_STORE_DOMAIN` | `your-store.myshopify.com` |
+| `SHOPIFY_STOREFRONT_ACCESS_TOKEN` | your Storefront API access token |
 
-## Integrations
+Optional:
 
-Integrations enable upgraded or additional functionality for Next.js Commerce
+| Variable | Value |
+| --- | --- |
+| `SITE_NAME` | Store name shown in the navbar/footer/titles |
+| `COMPANY_NAME` | Name used in the footer copyright |
+| `SHOPIFY_REVALIDATION_SECRET` | Secret for the `/api/revalidate` webhook (on-demand ISR from Shopify) |
 
-- [Orama](https://github.com/oramasearch/nextjs-commerce) ([Demo](https://vercel-commerce.oramasearch.com/))
+When you save, CoPath writes the values into the sandbox (`.env.local`) and
+**restarts the dev server automatically** — refresh the preview and your real
+catalog appears. Secrets are stored encrypted and are masked when you view them
+again. To take the variables to production too, set their target to `Production`
+or `All` before publishing.
 
-  - Upgrades search to include typeahead with dynamic re-rendering, vector-based similarity search, and JS-based configuration.
-  - Search runs entirely in the browser for smaller catalogs or on a CDN for larger.
+### Where do the Shopify credentials come from?
 
-- [React Bricks](https://github.com/ReactBricks/nextjs-commerce-rb) ([Demo](https://nextjs-commerce.reactbricks.com/))
-  - Edit pages, product details, and footer content visually using [React Bricks](https://www.reactbricks.com) visual headless CMS.
+In Shopify admin: **Settings → Apps and sales channels → Develop apps → Create an
+app**, enable the **Storefront API** scopes (read products, collections, and
+checkout/cart), then copy the **Storefront API access token**. Your store domain
+is the `*.myshopify.com` subdomain.
 
-## Running locally
+### Local dev (outside CoPath, optional)
 
-You will need to use the environment variables [defined in `.env.example`](.env.example) to run Next.js Commerce. It's recommended you use [Vercel Environment Variables](https://vercel.com/docs/concepts/projects/environment-variables) for this, but a `.env` file is all that is necessary.
-
-> Note: You should not commit your `.env` file or it will expose secrets that will allow others to control your Shopify store.
-
-1. Install Vercel CLI: `npm i -g vercel`
-2. Link local instance with Vercel and GitHub accounts (creates `.vercel` directory): `vercel link`
-3. Download your environment variables: `vercel env pull`
+Copy `.env.example` to `.env.local` and fill in the same variables, then:
 
 ```bash
 pnpm install
-pnpm dev
+pnpm dev          # http://localhost:4000
 ```
 
-Your app should now be running on [localhost:3000](http://localhost:3000/).
+## 3. Make it yours (theming)
 
-<details>
-  <summary>Expand if you work at Vercel and want to run locally and / or contribute</summary>
+The look is driven by design tokens in `app/globals.css` — the same shadcn token
+contract the other CoPath stacks use:
 
-1. Run `vc link`.
-1. Select the `Vercel Solutions` scope.
-1. Connect to the existing `commerce-shopify` project.
-1. Run `vc env pull` to get environment variables.
-1. Run `pnpm dev` to ensure everything is working correctly.
-</details>
+- **Theme & font pickers** in App Details restyle the store (colors, radius, font).
+- **`apply_preset`** swaps the whole palette in one shot.
+- Or edit the `:root { … }` / `.dark { … }` token values directly.
 
-## Vercel, Next.js Commerce, and Shopify Integration Guide
+Dark mode is class-based (`.dark` on `<html>`, set from the OS preference by a
+no-flash script in `app/layout.tsx`), so presets and `dark:` utilities both work.
 
-You can use this comprehensive [integration guide](https://vercel.com/docs/integrations/ecommerce/shopify) with step-by-step instructions on how to configure Shopify as a headless CMS using Next.js Commerce as your headless Shopify storefront on Vercel.
+Brand touch points to edit first:
+
+- `components/icons/logo.tsx` — the shopping-bag mark (swap for your logo).
+- `components/hero.tsx` — homepage hero copy & CTAs.
+- `SITE_NAME` / `COMPANY_NAME` env vars — store name.
+
+## Project structure
+
+```
+app/                     App Router routes (home, product, search, cart api)
+components/
+  hero.tsx               Universal store hero (always rendered)
+  store-empty-state.tsx  "Connect your store" demo-mode hint
+  cart/                  Cart context, modal, add/update/remove actions
+  layout/                Navbar, footer, search, mobile menu
+  product/               Gallery, variant selector, description
+  grid/                  Product grid + homepage three-item grid + carousel
+lib/shopify/             Storefront API client, queries, mutations, types
+app/globals.css          Design tokens (themeable) + base layer
+.copath/bootstrap.json   CoPath boot contract (install + `next dev -p 4000`)
+```
+
+## Notes
+
+- Without credentials the Storefront API client returns empty results instead of
+  crashing, so the preview always boots — you just see the demo hero + empty state.
+- Built on [vercel/commerce](https://github.com/vercel/commerce); the commerce
+  components and Storefront API layer are kept, with CoPath branding and the
+  shared design-token system layered on top.

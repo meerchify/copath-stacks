@@ -1,5 +1,5 @@
 import { getCollections, getPages, getProducts } from "lib/shopify";
-import { baseUrl, validateEnvironmentVariables } from "lib/utils";
+import { baseUrl } from "lib/utils";
 import { MetadataRoute } from "next";
 
 type Route = {
@@ -9,13 +9,20 @@ type Route = {
 
 export const dynamic = "force-dynamic";
 
-export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  validateEnvironmentVariables();
+// True once the store is connected. In demo mode (no credentials) we return just
+// the static routes so the starter still builds & deploys instead of throwing.
+const storeConnected = Boolean(
+  process.env.SHOPIFY_STORE_DOMAIN &&
+    process.env.SHOPIFY_STOREFRONT_ACCESS_TOKEN,
+);
 
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const routesMap = [""].map((route) => ({
     url: `${baseUrl}${route}`,
     lastModified: new Date().toISOString(),
   }));
+
+  if (!storeConnected) return routesMap;
 
   const collectionsPromise = getCollections().then((collections) =>
     collections.map((collection) => ({

@@ -1,7 +1,6 @@
 import { CartProvider } from "components/cart/cart-context";
 import { Navbar } from "components/layout/navbar";
 import { WelcomeToast } from "components/welcome-toast";
-import { GeistSans } from "geist/font/sans";
 import { getCart } from "lib/shopify";
 import { ReactNode } from "react";
 import { Toaster } from "sonner";
@@ -22,6 +21,11 @@ export const metadata = {
   },
 };
 
+// No-flash dark mode: set the `.dark` class from the OS preference before paint.
+// Tokens + every `dark:` utility key off this class (see globals.css), and it's
+// the same class the CoPath theme presets target.
+const themeScript = `(function(){try{var d=window.matchMedia("(prefers-color-scheme: dark)").matches;document.documentElement.classList.toggle("dark",d);}catch(e){}})();`;
+
 export default async function RootLayout({
   children,
 }: {
@@ -31,8 +35,11 @@ export default async function RootLayout({
   const cart = getCart();
 
   return (
-    <html lang="en" className={GeistSans.variable}>
-      <body className="bg-neutral-50 text-black selection:bg-teal-300 dark:bg-neutral-900 dark:text-white dark:selection:bg-pink-500 dark:selection:text-white">
+    <html lang="en" suppressHydrationWarning>
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: themeScript }} />
+      </head>
+      <body className="bg-background text-foreground selection:bg-muted">
         <CartProvider cartPromise={cart}>
           <Navbar />
           <main>
