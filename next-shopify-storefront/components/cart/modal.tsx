@@ -9,7 +9,7 @@ import { DEFAULT_OPTION } from "lib/constants";
 import { createUrl } from "lib/utils";
 import Image from "next/image";
 import Link from "next/link";
-import { Fragment, useEffect, useRef, useState } from "react";
+import { Fragment, useActionState, useEffect, useRef, useState } from "react";
 import { useFormStatus } from "react-dom";
 import { createCartAndSetCookie, redirectToCheckout } from "./actions";
 import { useCart } from "./cart-context";
@@ -215,9 +215,7 @@ export default function CartModal() {
                       />
                     </div>
                   </div>
-                  <form action={redirectToCheckout}>
-                    <CheckoutButton />
-                  </form>
+                  <CheckoutForm />
                 </div>
               )}
             </Dialog.Panel>
@@ -238,6 +236,22 @@ function CloseCart({ className }: { className?: string }) {
         )}
       />
     </div>
+  );
+}
+
+function CheckoutForm() {
+  // Server action returns a message string when checkout isn't available (demo
+  // mode / expired cart) instead of throwing; show it under the button.
+  const [message, formAction] = useActionState(redirectToCheckout, undefined);
+  return (
+    <form action={formAction}>
+      <CheckoutButton />
+      {message ? (
+        <p className="mt-2 text-center text-xs text-red-500" role="alert">
+          {message}
+        </p>
+      ) : null}
+    </form>
   );
 }
 

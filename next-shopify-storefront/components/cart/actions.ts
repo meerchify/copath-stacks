@@ -95,12 +95,24 @@ export async function updateItemQuantity(
   }
 }
 
-export async function redirectToCheckout() {
-  let cart = await getCart();
-  redirect(cart!.checkoutUrl);
+export async function redirectToCheckout(_prevState?: string) {
+  const cart = await getCart();
+  // Headless Shopify hosts checkout, so we hand off to Shopify's secure
+  // checkoutUrl. In demo mode (store not connected) or with an expired cart
+  // there is no checkoutUrl — surface a message instead of crashing.
+  if (!cart?.checkoutUrl) {
+    return "Checkout isn't available yet — connect your Shopify store to enable it.";
+  }
+  redirect(cart.checkoutUrl);
 }
 
 export async function createCartAndSetCookie() {
-  let cart = await createCart();
-  (await cookies()).set("cartId", cart.id!);
+  try {
+    const cart = await createCart();
+    if (cart?.id) {
+      (await cookies()).set("cartId", cart.id);
+    }
+  } catch {
+    // Store not connected yet (demo mode) — nothing to create.
+  }
 }

@@ -228,7 +228,16 @@ export async function createCart(): Promise<Cart> {
 export async function addToCart(
   lines: { merchandiseId: string; quantity: number }[]
 ): Promise<Cart> {
-  const cartId = (await cookies()).get("cartId")?.value!;
+  const cookieStore = await cookies();
+  let cartId = cookieStore.get("cartId")?.value;
+  // Self-heal: if the cart cookie isn't set yet (first add, or the modal's
+  // createCartAndSetCookie hasn't run / raced), create the cart here so the
+  // very first "Add to cart" always works.
+  if (!cartId) {
+    const newCart = await createCart();
+    cartId = newCart.id!;
+    cookieStore.set("cartId", cartId);
+  }
   const res = await shopifyFetch<ShopifyAddToCartOperation>({
     query: addToCartMutation,
     variables: {
