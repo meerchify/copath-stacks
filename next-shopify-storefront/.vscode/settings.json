@@ -1,18 +1,9 @@
 {
-  "editor.formatOnSave": true,
-  "emmet.triggerExpansionOnTab": true,
-
-  "prettier.enable": true,
-  "editor.defaultFormatter": "esbenp.prettier-vscode",
-
-  "eslint.enable": true,
+  "typescript.tsdk": "node_modules/typescript/lib",
+  "typescript.enablePromptUseWorkspaceTsdk": true,
   "editor.codeActionsOnSave": {
-    "source.fixAll.eslint": "explicit"
-  },
-
-  "files.associations": {
-    "*.css": "tailwindcss"
-  },
-
-  "typescript.tsdk": "node_modules/typescript/lib"
+    "source.fixAll": "explicit",
+    "source.organizeImports": "explicit",
+    "source.sortMembers": "explicit"
+  }
 }
