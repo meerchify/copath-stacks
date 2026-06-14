@@ -106,11 +106,23 @@ export async function redirectToCheckout(_prevState?: string) {
   redirect(cart.checkoutUrl);
 }
 
+// The storefront preview runs inside a cross-site iframe (CoPath App Details),
+// so a default SameSite=Lax cookie is blocked by the browser and the cart never
+// persists. SameSite=None + Secure + Partitioned (CHIPS) lets the cart cookie
+// survive in the embedded preview while staying first-party-safe in production.
+export const CART_COOKIE_OPTIONS = {
+  path: "/",
+  httpOnly: true,
+  sameSite: "none",
+  secure: true,
+  partitioned: true,
+} as const;
+
 export async function createCartAndSetCookie() {
   try {
     const cart = await createCart();
     if (cart?.id) {
-      (await cookies()).set("cartId", cart.id);
+      (await cookies()).set("cartId", cart.id, CART_COOKIE_OPTIONS);
     }
   } catch {
     // Store not connected yet (demo mode) — nothing to create.
