@@ -48,4 +48,13 @@ export const TAGS = {
 
 export const HIDDEN_PRODUCT_TAG = "nextjs-frontend-hidden";
 export const DEFAULT_OPTION = "Default Title";
-export const SHOPIFY_GRAPHQL_API_ENDPOINT = "/api/2023-01/graphql.json";
+
+// Shopify ships a new Storefront API version each quarter (YYYY-{01,04,07,10})
+// and supports the trailing ~12 months. The old hard-coded "2023-01" is long
+// past sunset, which can make Cart API mutations (cartCreate/cartLinesAdd) fail
+// while product reads still work — exactly the "products load but checkout is
+// unavailable" symptom. Default to a current stable version; override per store
+// via the SHOPIFY_API_VERSION env var (set it in App Details → env if needed).
+export const SHOPIFY_API_VERSION =
+  process.env.SHOPIFY_API_VERSION || "2026-01";
+export const SHOPIFY_GRAPHQL_API_ENDPOINT = `/api/${SHOPIFY_API_VERSION}/graphql.json`;
