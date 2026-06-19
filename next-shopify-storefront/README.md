@@ -1,24 +1,24 @@
-# Universal Store — CoPath starter
+# Universal Store — Codrafts starter
 
 A fast, server-rendered **universal storefront** built on Next.js (App Router)
 and the **Shopify Storefront API**. Products, search, cart, and checkout work out
 of the box — checkout runs on Shopify, so there's no backend to host.
 
 It boots immediately in **demo mode** (no products) and turns into a real shop the
-moment you connect your store. The UI uses the shared CoPath design tokens, so the
-theme and font pickers re-skin it like every other CoPath stack.
+moment you connect your store. The UI uses the shared Codrafts design tokens, so the
+theme and font pickers re-skin it like every other Codrafts stack.
 
 ---
 
 ## 1. Boot it
 
-Fork the **Shopify storefront (Next.js)** starter in the CoPath Library. The dev
+Fork the **Shopify storefront (Next.js)** starter in the Codrafts Library. The dev
 preview comes up in demo mode and shows a "Connect your store" hint on the home
 page — that's expected until you add credentials.
 
 ## 2. Connect your Shopify store (environment variables)
 
-This starter reads its configuration from environment variables. In CoPath you
+This starter reads its configuration from environment variables. In Codrafts you
 add them in the app, **not** in a file:
 
 > **App Details → Publish → Environment variables**
@@ -39,7 +39,7 @@ Optional:
 | `COMPANY_NAME` | Name used in the footer copyright |
 | `SHOPIFY_REVALIDATION_SECRET` | Secret for the `/api/revalidate` webhook (on-demand ISR from Shopify) |
 
-When you save, CoPath writes the values into the sandbox (`.env.local`) and
+When you save, Codrafts writes the values into the sandbox (`.env.local`) and
 **restarts the dev server automatically** — refresh the preview and your real
 catalog appears. Secrets are stored encrypted and are masked when you view them
 again. To take the variables to production too, set their target to `Production`
@@ -52,7 +52,7 @@ app**, enable the **Storefront API** scopes (read products, collections, and
 checkout/cart), then copy the **Storefront API access token**. Your store domain
 is the `*.myshopify.com` subdomain.
 
-### Local dev (outside CoPath, optional)
+### Local dev (outside Codrafts, optional)
 
 Copy `.env.example` to `.env.local` and fill in the same variables, then:
 
@@ -64,7 +64,7 @@ pnpm dev          # http://localhost:4000
 ## 3. Make it yours (theming)
 
 The look is driven by design tokens in `app/globals.css` — the same shadcn token
-contract the other CoPath stacks use:
+contract the other Codrafts stacks use:
 
 - **Theme & font pickers** in App Details restyle the store (colors, radius, font).
 - **`apply_preset`** swaps the whole palette in one shot.
@@ -92,7 +92,7 @@ components/
   grid/                  Product grid + homepage three-item grid + carousel
 lib/shopify/             Storefront API client, queries, mutations, types
 app/globals.css          Design tokens (themeable) + base layer
-.copath/bootstrap.json   CoPath boot contract (install + `next dev -p 4000`)
+.copath/bootstrap.json   Codrafts boot contract (install + `next dev -p 4000`)
 ```
 
 ## Notes
@@ -100,5 +100,5 @@ app/globals.css          Design tokens (themeable) + base layer
 - Without credentials the Storefront API client returns empty results instead of
   crashing, so the preview always boots — you just see the demo hero + empty state.
 - Built on [vercel/commerce](https://github.com/vercel/commerce); the commerce
-  components and Storefront API layer are kept, with CoPath branding and the
+  components and Storefront API layer are kept, with Codrafts branding and the
   shared design-token system layered on top.

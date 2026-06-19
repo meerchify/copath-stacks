@@ -238,7 +238,7 @@ export async function addToCart(
     const newCart = await createCart();
     cartId = newCart.id!;
     // SameSite=None + Secure + Partitioned so the cookie survives the cross-site
-    // iframe preview (CoPath App Details). See CART_COOKIE_OPTIONS in lib/constants.
+    // iframe preview (Codrafts App Details). See CART_COOKIE_OPTIONS in lib/constants.
     cookieStore.set("cartId", cartId, CART_COOKIE_OPTIONS);
   }
   const res = await shopifyFetch<ShopifyAddToCartOperation>({

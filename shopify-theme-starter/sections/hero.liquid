@@ -1,0 +1,38 @@
+<section class="hero" style="text-align:{{ section.settings.alignment }}">
+  {%- if section.settings.heading != blank -%}
+    <h1 class="hero__heading">{{ section.settings.heading }}</h1>
+  {%- endif -%}
+  {%- if section.settings.subheading != blank -%}
+    <p class="hero__subheading">{{ section.settings.subheading }}</p>
+  {%- endif -%}
+  {%- if section.settings.button_label != blank -%}
+    <a class="hero__button" href="{{ section.settings.button_link }}">
+      {{ section.settings.button_label }}
+    </a>
+  {%- endif -%}
+</section>
+
+{% schema %}
+{
+  "name": "Hero",
+  "tag": "section",
+  "settings": [
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Welcome to your new theme" },
+    { "type": "text", "id": "subheading", "label": "Subheading", "default": "Built with Codrafts. Edit me with a prompt." },
+    { "type": "text", "id": "button_label", "label": "Button label", "default": "Shop now" },
+    { "type": "url", "id": "button_link", "label": "Button link" },
+    {
+      "type": "select",
+      "id": "alignment",
+      "label": "Text alignment",
+      "options": [
+        { "value": "left", "label": "Left" },
+        { "value": "center", "label": "Center" },
+        { "value": "right", "label": "Right" }
+      ],
+      "default": "center"
+    }
+  ],
+  "presets": [{ "name": "Hero" }]
+}
+{% endschema %}

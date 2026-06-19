@@ -133,12 +133,12 @@ export default async function Footer() {
           </p>
           <a
             className="flex h-8 w-max items-center justify-center rounded-md border border-border bg-card px-3 text-xs text-foreground md:ml-auto"
-            aria-label="Built with CoPath"
+            aria-label="Built with Codrafts"
             href="https://copath.app"
             target="_blank"
             rel="noreferrer"
           >
-            Built with CoPath
+            Built with Codrafts
           </a>
         </div>
       </div>

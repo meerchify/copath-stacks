@@ -6,7 +6,7 @@
 @custom-variant dark (&:is(.dark *));
 
 /* ──────────────────────────────────────────────────────────────────────────
-   CoPath starter design system — the "Google AI Studio" theme preset baked in.
+   Codrafts starter design system — the "Codrafts Studio" theme preset baked in.
 
    • SHELL (this @theme inline + @layer base) is framework-agnostic and is left
      untouched by the preset applier.

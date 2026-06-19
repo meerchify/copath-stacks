@@ -1,5 +1,5 @@
 // Shown on the homepage when no products load — i.e. the store isn't connected
-// yet (no Shopify credentials). Guides the user to the CoPath env panel instead
+// yet (no Shopify credentials). Guides the user to the Codrafts env panel instead
 // of leaving a blank page. Disappears automatically once products are returned.
 export function StoreEmptyState() {
   return (
@@ -15,7 +15,7 @@ export function StoreEmptyState() {
         </p>
         <div className="mx-auto mt-6 max-w-md rounded-xl border border-border bg-card p-4 text-left">
           <p className="mb-2 text-xs font-medium text-muted-foreground">
-            In CoPath: App Details → Publish → Environment variables
+            In Codrafts: App Details → Publish → Environment variables
           </p>
           <ul className="space-y-1 font-mono text-xs text-card-foreground">
             <li>SHOPIFY_STORE_DOMAIN = your-store.myshopify.com</li>

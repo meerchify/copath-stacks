@@ -1,13 +1,31 @@
 ---
+// The ONE place that owns <html>/<head>/<body> and loads global styles.
+// Every page must render through this layout — see README. Pass per-page
+// title/description/lang as props; add extra <head> tags via the "head" slot.
 import "@/styles/global.css"
+
+interface Props {
+  title?: string
+  description?: string
+  lang?: string
+  bodyClass?: string
+}
+
+const {
+  title = "Astro App",
+  description,
+  lang = "en",
+  bodyClass,
+} = Astro.props
 ---
 
-<html lang="en">
+<html lang={lang}>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <title>Astro App</title>
+    <title>{title}</title>
+    {description && <meta name="description" content={description} />}
     <script is:inline>
       // Default to dark mode; only honor an explicit "light" choice. Applied
       // before paint so the theme never flashes.
@@ -18,8 +36,9 @@ import "@/styles/global.css"
         document.documentElement.classList.add("dark");
       }
     </script>
+    <slot name="head" />
   </head>
-  <body>
+  <body class={bodyClass}>
     <slot />
   </body>
 </html>

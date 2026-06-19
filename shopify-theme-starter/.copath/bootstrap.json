@@ -1,0 +1,16 @@
+{
+  "version": 2,
+  "services": [
+    {
+      "id": "theme",
+      "name": "Shopify theme",
+      "framework": "shopify",
+      "cwd": ".",
+      "install": "true",
+      "skipInstallIf": "config/settings_schema.json",
+      "dev": "shopify theme dev --host 0.0.0.0 --port 9292",
+      "port": 9292
+    }
+  ],
+  "artifacts": []
+}

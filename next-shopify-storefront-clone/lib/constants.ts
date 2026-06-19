@@ -49,7 +49,7 @@ export const TAGS = {
 export const HIDDEN_PRODUCT_TAG = "nextjs-frontend-hidden";
 export const DEFAULT_OPTION = "Default Title";
 
-// The storefront preview runs inside a cross-site iframe (CoPath App Details),
+// The storefront preview runs inside a cross-site iframe (Codrafts App Details),
 // so a default SameSite=Lax cookie is blocked by the browser and the cart never
 // persists. SameSite=None + Secure + Partitioned (CHIPS) lets the cart cookie
 // survive in the embedded preview while staying first-party-safe in production.

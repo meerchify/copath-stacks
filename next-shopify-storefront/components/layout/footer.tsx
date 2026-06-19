@@ -44,12 +44,12 @@ export default async function Footer() {
         <div className="md:ml-auto">
           <a
             className="flex h-8 w-max flex-none items-center justify-center rounded-md border border-neutral-200 bg-white px-3 text-xs text-black dark:border-neutral-700 dark:bg-black dark:text-white"
-            aria-label="Built with CoPath"
+            aria-label="Built with Codrafts"
             href="https://copath.app"
             target="_blank"
             rel="noreferrer"
           >
-            <span>Built with CoPath</span>
+            <span>Built with Codrafts</span>
           </a>
         </div>
       </div>
@@ -65,7 +65,7 @@ export default async function Footer() {
           <hr className="mx-4 hidden h-4 w-[1px] border-l border-neutral-400 md:inline-block" />
           <p className="md:ml-auto">
             <a href="https://copath.app" className="text-black dark:text-white">
-              Built with CoPath
+              Built with Codrafts
             </a>
           </p>
         </div>

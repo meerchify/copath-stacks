@@ -4,7 +4,7 @@ import tailwindcss from "@tailwindcss/vite"
 import { defineConfig } from "astro/config"
 import react from "@astrojs/react"
 
-// Inside the CoPath sandbox the dev server is served under a path prefix
+// Inside the Codrafts sandbox the dev server is served under a path prefix
 // (…/vproxy/<port>), passed in as COPATH_BASE_PATH. Astro serves routes + assets
 // under `base`; the Vite dev server must also accept the sandbox host. Empty in
 // local dev / production → a normal root-served app.

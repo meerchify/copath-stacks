@@ -1,0 +1,12 @@
+<footer class="site-footer">
+  <p>{{ section.settings.text | default: '© ' | append: shop.name }}</p>
+</footer>
+
+{% schema %}
+{
+  "name": "Footer",
+  "settings": [
+    { "type": "text", "id": "text", "label": "Footer text" }
+  ]
+}
+{% endschema %}

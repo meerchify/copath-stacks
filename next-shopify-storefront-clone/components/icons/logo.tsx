@@ -1,7 +1,7 @@
 import clsx from "clsx";
 
 // Universal "shopping bag" mark — framework-neutral so this works as a generic
-// CoPath store starter (swap it for your own brand mark in components/icons).
+// Codrafts store starter (swap it for your own brand mark in components/icons).
 export default function LogoIcon(props: React.ComponentProps<"svg">) {
   return (
     <svg

@@ -23,7 +23,7 @@ export const metadata = {
 
 // No-flash dark mode: set the `.dark` class from the OS preference before paint.
 // Tokens + every `dark:` utility key off this class (see globals.css), and it's
-// the same class the CoPath theme presets target.
+// the same class the Codrafts theme presets target.
 const themeScript = `(function(){try{var d=window.matchMedia("(prefers-color-scheme: dark)").matches;document.documentElement.classList.toggle("dark",d);}catch(e){}})();`;
 
 export default async function RootLayout({

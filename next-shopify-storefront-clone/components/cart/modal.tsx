@@ -246,7 +246,7 @@ function CheckoutForm() {
 
   // Shopify hosts checkout itself and serves it with `Content-Security-Policy:
   // frame-ancestors 'none'`, so it can NEVER render inside an iframe (e.g. the
-  // CoPath App Details preview). A server-side redirect would just navigate the
+  // Codrafts App Details preview). A server-side redirect would just navigate the
   // iframe to a blocked page. Instead we break out of the frame and open the
   // secure checkoutUrl in a new top-level tab.
   const handleCheckout = () => {

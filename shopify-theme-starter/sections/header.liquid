@@ -1,0 +1,20 @@
+<header class="site-header">
+  <a href="{{ routes.root_url }}" class="site-header__logo">
+    {{ section.settings.heading | default: shop.name }}
+  </a>
+  <nav class="site-header__nav">
+    {%- for link in section.settings.menu.links -%}
+      <a href="{{ link.url }}">{{ link.title }}</a>
+    {%- endfor -%}
+  </nav>
+</header>
+
+{% schema %}
+{
+  "name": "Header",
+  "settings": [
+    { "type": "text", "id": "heading", "label": "Logo text", "default": "Your store" },
+    { "type": "link_list", "id": "menu", "label": "Menu", "default": "main-menu" }
+  ]
+}
+{% endschema %}

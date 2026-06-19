@@ -7,7 +7,7 @@
 @custom-variant dark (&:is(.dark *));
 
 /* ──────────────────────────────────────────────────────────────────────────
-   CoPath store design system — same shadcn token contract as the other CoPath
+   Codrafts store design system — same shadcn token contract as the other Codrafts
    stacks, so the App Details theme/font pickers + `apply_preset` re-skin this
    storefront too.
 

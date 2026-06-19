@@ -1,0 +1,13 @@
+{
+  "sections": {
+    "hero": {
+      "type": "hero",
+      "settings": {
+        "heading": "Welcome to your new store",
+        "subheading": "This is a starter Shopify theme. Ask Codrafts to redesign it.",
+        "button_label": "Shop now"
+      }
+    }
+  },
+  "order": ["hero"]
+}

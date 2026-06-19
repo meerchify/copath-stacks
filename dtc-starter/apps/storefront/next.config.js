@@ -13,14 +13,14 @@ const S3_PATHNAME = process.env.MEDUSA_CLOUD_S3_PATHNAME
  */
 const nextConfig = {
   reactStrictMode: true,
-  // In CoPath the dev server is reached at <port>-<id>.e2b.app and, through the
-  // branded preview proxy, at <port>-<id>.copath.run. Allow both as dev origins
+  // In Codrafts the dev server is reached at <port>-<id>.e2b.app and, through the
+  // branded preview proxy, at <port>-<id>.codrafts.site. Allow both as dev origins
   // (HMR/RSC) AND as Server Action origins — otherwise Next rejects the cart /
   // checkout / account mutations as cross-origin and the cart silently breaks.
-  allowedDevOrigins: ["*.e2b.app", "*.copath.run"],
+  allowedDevOrigins: ["*.e2b.app", "*.codrafts.site"],
   experimental: {
     serverActions: {
-      allowedOrigins: ["*.e2b.app", "*.copath.run"],
+      allowedOrigins: ["*.e2b.app", "*.codrafts.site"],
     },
   },
   logging: {
