@@ -1,25 +1,83 @@
 [
   {
     "name": "theme_info",
-    "theme_name": "Codrafts Starter",
-    "theme_version": "1.0.0",
+    "theme_name": "Codrafts Theme",
+    "theme_version": "0.1.0",
     "theme_author": "Codrafts",
-    "theme_documentation_url": "https://shopify.dev/docs/themes",
-    "theme_support_url": "https://shopify.dev/docs/themes"
+    "theme_documentation_url": "https://help.shopify.com/manual/online-store/themes",
+    "theme_support_url": "https://support.shopify.com/"
   },
   {
-    "name": "Colors",
+    "name": "t:general.typography",
     "settings": [
-      { "type": "color", "id": "color_background", "label": "Background", "default": "#ffffff" },
-      { "type": "color", "id": "color_text", "label": "Text", "default": "#121212" },
-      { "type": "color", "id": "color_accent", "label": "Accent", "default": "#1a73e8" }
+      {
+        "type": "header",
+        "content": "t:general.fonts"
+      },
+      {
+        "type": "font_picker",
+        "id": "type_primary_font",
+        "default": "work_sans_n4",
+        "label": "t:general.primary"
+      }
     ]
   },
   {
-    "name": "Typography",
+    "name": "t:general.layout",
     "settings": [
-      { "type": "font_picker", "id": "font_body", "label": "Body font", "default": "assistant_n4" },
-      { "type": "font_picker", "id": "font_heading", "label": "Heading font", "default": "assistant_n7" }
+      {
+        "type": "select",
+        "id": "max_page_width",
+        "label": "t:labels.page_width",
+        "options": [
+          {
+            "value": "90rem",
+            "label": "t:options.page_width.narrow"
+          },
+          {
+            "value": "110rem",
+            "label": "t:options.page_width.wide"
+          }
+        ],
+        "default": "90rem"
+      },
+      {
+        "type": "range",
+        "id": "min_page_margin",
+        "min": 10,
+        "max": 100,
+        "step": 1,
+        "unit": "px",
+        "label": "t:labels.page_margin",
+        "default": 20
+      }
+    ]
+  },
+  {
+    "name": "t:general.colors",
+    "settings": [
+      {
+        "type": "color",
+        "id": "background_color",
+        "default": "#FFFFFF",
+        "label": "t:labels.background"
+      },
+      {
+        "type": "color",
+        "id": "foreground_color",
+        "default": "#333333",
+        "label": "t:labels.foreground"
+      },
+      {
+        "type": "range",
+        "id": "input_corner_radius",
+        "min": 0,
+        "max": 10,
+        "step": 1,
+        "unit": "px",
+        "label": "t:labels.input_corner_radius",
+        "default": 4
+      }
     ]
   }
 ]
