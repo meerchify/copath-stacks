@@ -1,6 +1,9 @@
 <!doctype html>
 <html lang="{{ request.locale.iso_code }}">
   <head>
+    {% # Mark JS as available before paint so scroll-reveal can fail open (visible by default). %}
+    <script>document.documentElement.classList.add('js');</script>
+
     {% # Inlined CSS Variables %}
     {% render 'css-variables' %}
 
@@ -20,6 +23,9 @@
     {% # Load and preload the critical CSS %}
     {{ 'critical.css' | asset_url | stylesheet_tag: preload: true }}
 
+    {% # Shared storefront UI utilities (buttons, product grid/card, reveal) %}
+    {{ 'store.css' | asset_url | stylesheet_tag }}
+
     {% # Social, title, etc. %}
     {% render 'meta-tags' %}
 
@@ -32,5 +38,8 @@
     {{ content_for_layout }}
 
     {% sections 'footer-group' %}
+
+    {% # Storefront micro-interactions (scroll reveal, header shrink) — fail-open %}
+    <script src="{{ 'store.js' | asset_url }}" defer></script>
   </body>
 </html>

@@ -19,6 +19,13 @@
         "id": "type_primary_font",
         "default": "work_sans_n4",
         "label": "t:general.primary"
+      },
+      {
+        "type": "font_picker",
+        "id": "type_heading_font",
+        "default": "work_sans_n7",
+        "label": "Heading font",
+        "info": "Pick a characterful display face for headings."
       }
     ]
   },
@@ -69,6 +76,30 @@
         "label": "t:labels.foreground"
       },
       {
+        "type": "color",
+        "id": "accent_color",
+        "default": "#1A73E8",
+        "label": "Accent"
+      },
+      {
+        "type": "color",
+        "id": "accent_foreground",
+        "default": "#FFFFFF",
+        "label": "Text on accent"
+      },
+      {
+        "type": "color",
+        "id": "surface_color",
+        "default": "#F6F6F7",
+        "label": "Surface / card"
+      },
+      {
+        "type": "color",
+        "id": "border_color",
+        "default": "#E3E3E3",
+        "label": "Border"
+      },
+      {
         "type": "range",
         "id": "input_corner_radius",
         "min": 0,
@@ -77,6 +108,16 @@
         "unit": "px",
         "label": "t:labels.input_corner_radius",
         "default": 4
+      },
+      {
+        "type": "range",
+        "id": "card_corner_radius",
+        "min": 0,
+        "max": 28,
+        "step": 1,
+        "unit": "px",
+        "label": "Card corner radius",
+        "default": 12
       }
     ]
   }

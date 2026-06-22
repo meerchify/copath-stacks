@@ -1,0 +1,33 @@
+<section class="section rich-text reveal" style="--rt-bg: {{ section.settings.background | default: 'transparent' }};">
+  <div class="page-width rich-text__inner">
+    {%- if section.settings.eyebrow != blank -%}<p class="eyebrow">{{ section.settings.eyebrow }}</p>{%- endif -%}
+    {%- if section.settings.heading != blank -%}<h2 class="rich-text__title">{{ section.settings.heading }}</h2>{%- endif -%}
+    {%- if section.settings.text != blank -%}<div class="rich-text__body rte">{{ section.settings.text }}</div>{%- endif -%}
+    {%- if section.settings.button_label != blank -%}
+      <a class="btn btn--primary" href="{{ section.settings.button_link | default: '#' }}">{{ section.settings.button_label }}</a>
+    {%- endif -%}
+  </div>
+</section>
+
+{% stylesheet %}
+  .rich-text { background: var(--rt-bg); }
+  .rich-text__inner { max-width: 760px; margin-inline: auto; text-align: center; display: flex; flex-direction: column; align-items: center; gap: 1rem; }
+  .rich-text__title { font-family: var(--font-heading--family, var(--font-primary--family)); font-size: clamp(1.8rem, 4vw, 3rem); line-height: 1.05; letter-spacing: -0.02em; }
+  .rich-text__body { font-size: clamp(1rem, 1.4vw, 1.15rem); line-height: 1.6; opacity: 0.85; }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Rich text",
+  "tag": "section",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Our story" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Made to last, designed to love" },
+    { "type": "richtext", "id": "text", "label": "Text", "default": "<p>We started with a simple idea: great products shouldn't cost a fortune. Every item is designed in-house and built to last.</p>" },
+    { "type": "color", "id": "background", "label": "Background" },
+    { "type": "text", "id": "button_label", "label": "Button label", "default": "About us" },
+    { "type": "url", "id": "button_link", "label": "Button link" }
+  ],
+  "presets": [ { "name": "Rich text" } ]
+}
+{% endschema %}

@@ -1,0 +1,56 @@
+{% comment %}
+  Product card — image (with hover-swap to the 2nd image), title, price.
+  Usage: {% render 'product-card', product: product %}
+  Falls back to a placeholder when no product is passed (empty-state grids).
+{% endcomment %}
+
+{%- if product and product != empty -%}
+  {%- assign second = product.images[1] -%}
+  <a class="product-card" href="{{ product.url }}">
+    <div class="product-card__media">
+      {%- if product.compare_at_price > product.price and product.available -%}
+        <span class="badge badge--sale">Sale</span>
+      {%- endif -%}
+      {%- unless product.available -%}
+        <span class="badge badge--soldout">Sold out</span>
+      {%- endunless -%}
+      {%- if product.featured_image -%}
+        {{
+          product.featured_image
+          | image_url: width: 720
+          | image_tag: loading: 'lazy', class: 'product-card__img', widths: '240, 360, 480, 720', sizes: '(max-width: 600px) 50vw, 25vw'
+        }}
+      {%- else -%}
+        {{ 'product-1' | placeholder_svg_tag: 'product-card__img' }}
+      {%- endif -%}
+      {%- if second -%}
+        {{
+          second
+          | image_url: width: 720
+          | image_tag: loading: 'lazy', class: 'product-card__img product-card__img--hover', widths: '240, 360, 480, 720', sizes: '(max-width: 600px) 50vw, 25vw'
+        }}
+      {%- endif -%}
+    </div>
+    <div class="product-card__info">
+      <h3 class="product-card__title">{{ product.title }}</h3>
+      <div class="product-card__price">
+        {%- if product.compare_at_price > product.price -%}
+          <span class="price price--sale">{{ product.price | money }}</span>
+          <s class="price price--was">{{ product.compare_at_price | money }}</s>
+        {%- else -%}
+          <span class="price">{{ product.price | money }}</span>
+        {%- endif -%}
+      </div>
+    </div>
+  </a>
+{%- else -%}
+  <div class="product-card product-card--placeholder">
+    <div class="product-card__media">
+      {{ 'product-1' | placeholder_svg_tag: 'product-card__img' }}
+    </div>
+    <div class="product-card__info">
+      <h3 class="product-card__title">Product title</h3>
+      <div class="product-card__price"><span class="price">{{ 1999 | money }}</span></div>
+    </div>
+  </div>
+{%- endif -%}

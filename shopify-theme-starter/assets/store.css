@@ -1,0 +1,135 @@
+/* Shared store UI utilities — token-driven, used across the storefront sections.
+   Color/type/radius come from settings via snippets/css-variables.liquid. */
+
+.page-width {
+  max-width: var(--page-width, 90rem);
+  margin-inline: auto;
+  padding-inline: var(--page-margin, 20px);
+  width: 100%;
+}
+
+.section {
+  padding-block: clamp(40px, 7vw, 96px);
+}
+
+.section__head {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 1.5rem;
+  margin-bottom: clamp(20px, 3vw, 44px);
+  flex-wrap: wrap;
+}
+
+.section__title {
+  font-family: var(--font-heading--family, var(--font-primary--family));
+  font-size: clamp(1.6rem, 3.2vw, 2.75rem);
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+}
+
+.eyebrow {
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--color-accent, currentcolor);
+  margin-bottom: 0.5rem;
+}
+
+/* Buttons ------------------------------------------------------------------ */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.85rem 1.4rem;
+  border-radius: var(--style-border-radius-cards, 12px);
+  font-weight: 600;
+  text-decoration: none;
+  line-height: 1;
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: transform 0.18s var(--ease-spring, cubic-bezier(0.16, 1, 0.3, 1)),
+    box-shadow 0.18s ease, background-color 0.18s ease, opacity 0.18s ease;
+}
+.btn:hover { transform: translateY(-2px); }
+.btn:focus-visible { outline: 2px solid var(--color-accent); outline-offset: 2px; }
+.btn--primary {
+  background-color: var(--color-accent, #1a73e8);
+  color: var(--color-on-accent, #fff);
+}
+.btn--primary:hover { box-shadow: 0 10px 28px -8px var(--color-accent, #1a73e8); }
+.btn--ghost {
+  background-color: transparent;
+  color: currentcolor;
+  border-color: var(--color-border, #e3e3e3);
+}
+.btn--ghost:hover { background-color: var(--color-surface, #f6f6f7); }
+
+/* Product grid + card ------------------------------------------------------ */
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: clamp(12px, 2vw, 28px);
+}
+.category-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: clamp(12px, 2vw, 24px);
+}
+@media (max-width: 990px) {
+  .product-grid { grid-template-columns: repeat(2, 1fr); }
+  .category-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 600px) {
+  .product-grid { grid-template-columns: repeat(2, 1fr); }
+  .category-grid { grid-template-columns: 1fr; }
+}
+
+.product-card { display: block; color: inherit; text-decoration: none; }
+.product-card__media {
+  position: relative;
+  aspect-ratio: 4 / 5;
+  overflow: hidden;
+  border-radius: var(--style-border-radius-cards, 12px);
+  background: var(--color-surface, #f6f6f7);
+}
+.product-card__img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: opacity 0.4s ease, transform 0.6s var(--ease-spring, cubic-bezier(0.16, 1, 0.3, 1));
+}
+.product-card__img--hover { opacity: 0; }
+.product-card:hover .product-card__img { transform: scale(1.04); }
+.product-card:hover .product-card__img--hover { opacity: 1; }
+.product-card__info { padding-top: 0.75rem; display: flex; flex-direction: column; gap: 0.25rem; }
+.product-card__title { font-size: 0.95rem; font-weight: 500; }
+.product-card__price { display: flex; gap: 0.5rem; align-items: baseline; }
+.price { font-weight: 600; }
+.price--was { opacity: 0.55; font-weight: 400; }
+.badge {
+  position: absolute;
+  top: 0.6rem;
+  left: 0.6rem;
+  z-index: 1;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  padding: 0.25rem 0.55rem;
+  border-radius: 999px;
+}
+.badge--sale { background: var(--color-accent, #1a73e8); color: var(--color-on-accent, #fff); }
+.badge--soldout { background: var(--color-foreground, #333); color: var(--color-background, #fff); }
+
+/* Scroll reveal — FAIL-OPEN. Hidden only once JS confirms AND motion allowed. */
+.js .reveal { opacity: 0; transform: translateY(26px); transition: opacity 0.7s var(--ease-spring, cubic-bezier(0.16, 1, 0.3, 1)), transform 0.7s var(--ease-spring, cubic-bezier(0.16, 1, 0.3, 1)); }
+.js .reveal.is-visible { opacity: 1; transform: none; }
+@media (prefers-reduced-motion: reduce) {
+  .js .reveal { opacity: 1; transform: none; transition: none; }
+  * { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+}

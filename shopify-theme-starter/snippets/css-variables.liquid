@@ -5,14 +5,27 @@
   {{ settings.type_primary_font | font_modify: 'weight', 'bold' | font_modify: 'style', 'italic' | font_face: font_display: 'swap' }}
   {{ settings.type_primary_font | font_modify: 'style', 'italic' | font_face: font_display: 'swap' }}
 
+  {% # Heading font (falls back to the primary font when unset) %}
+  {%- assign heading_font = settings.type_heading_font | default: settings.type_primary_font -%}
+  {{ heading_font | font_face: font_display: 'swap' }}
+  {{ heading_font | font_modify: 'weight', 'bold' | font_face: font_display: 'swap' }}
+
   :root {
     --font-primary--family: {{ settings.type_primary_font.family }}, {{ settings.type_primary_font.fallback_families }};
     --font-primary--style: {{ settings.type_primary_font.style }};
     --font-primary--weight: {{ settings.type_primary_font.weight }};
+    --font-heading--family: {{ heading_font.family }}, {{ heading_font.fallback_families }};
+    --font-heading--weight: {{ heading_font.weight }};
     --page-width: {{ settings.max_page_width }};
     --page-margin: {{ settings.min_page_margin }}px;
     --color-background: {{ settings.background_color }};
     --color-foreground: {{ settings.foreground_color }};
+    --color-accent: {{ settings.accent_color | default: '#1a73e8' }};
+    --color-on-accent: {{ settings.accent_foreground | default: '#ffffff' }};
+    --color-surface: {{ settings.surface_color | default: '#f6f6f7' }};
+    --color-border: {{ settings.border_color | default: '#e3e3e3' }};
     --style-border-radius-inputs: {{ settings.input_corner_radius }}px;
+    --style-border-radius-cards: {{ settings.card_corner_radius | default: 12 }}px;
+    --ease-spring: cubic-bezier(0.16, 1, 0.3, 1);
   }
 {% endstyle %}

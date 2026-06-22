@@ -1,0 +1,63 @@
+<section class="value-props section reveal">
+  <div class="page-width">
+    <ul class="value-props__grid" role="list">
+      {%- for block in section.blocks -%}
+        <li class="value-prop" {{ block.shopify_attributes }}>
+          {%- if block.settings.icon != blank -%}
+            <span class="value-prop__icon" aria-hidden="true">{{ block.settings.icon }}</span>
+          {%- endif -%}
+          <div>
+            <h3 class="value-prop__title">{{ block.settings.title }}</h3>
+            {%- if block.settings.text != blank -%}
+              <p class="value-prop__text">{{ block.settings.text }}</p>
+            {%- endif -%}
+          </div>
+        </li>
+      {%- endfor -%}
+    </ul>
+  </div>
+</section>
+
+{% stylesheet %}
+  .value-props { padding-block: clamp(28px, 4vw, 56px); border-block: 1px solid var(--color-border); }
+  .value-props__grid {
+    list-style: none; margin: 0; padding: 0;
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: clamp(16px, 2.5vw, 32px);
+  }
+  .value-prop { display: flex; gap: 0.85rem; align-items: flex-start; }
+  .value-prop__icon { font-size: 1.5rem; line-height: 1; }
+  .value-prop__title { font-size: 1rem; font-weight: 600; }
+  .value-prop__text { font-size: 0.9rem; opacity: 0.7; margin-top: 0.2rem; line-height: 1.4; }
+  @media (max-width: 990px) { .value-props__grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 560px) { .value-props__grid { grid-template-columns: 1fr; } }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Value props",
+  "tag": "section",
+  "max_blocks": 4,
+  "blocks": [
+    {
+      "type": "item",
+      "name": "Item",
+      "settings": [
+        { "type": "text", "id": "icon", "label": "Icon (emoji or character)", "info": "Optional. Replace with a real icon snippet for production." },
+        { "type": "text", "id": "title", "label": "Title", "default": "Free shipping" },
+        { "type": "text", "id": "text", "label": "Text", "default": "On all orders over $50" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Value props",
+      "blocks": [
+        { "type": "item", "settings": { "title": "Free shipping", "text": "On all orders over $50" } },
+        { "type": "item", "settings": { "title": "30-day returns", "text": "No questions asked" } },
+        { "type": "item", "settings": { "title": "2-year warranty", "text": "On every product" } },
+        { "type": "item", "settings": { "title": "Secure checkout", "text": "Powered by Shopify" } }
+      ]
+    }
+  ]
+}
+{% endschema %}
