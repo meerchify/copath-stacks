@@ -8,7 +8,7 @@
       "cwd": ".",
       "install": "npm install --no-save @shopify/cli @shopify/theme",
       "skipInstallIf": "node_modules/.bin/shopify",
-      "dev": "npx --yes shopify theme dev --host 0.0.0.0 --port 9292",
+      "dev": "npx --yes shopify theme dev --host 0.0.0.0 --port 9292 --live-reload off",
       "port": 9292
     }
   ],
