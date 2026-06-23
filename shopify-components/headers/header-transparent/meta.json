@@ -1,0 +1,14 @@
+{
+  "id": "header-transparent",
+  "name": "Header — Transparent",
+  "category": "headers",
+  "description": "Fixed, transparent over a fullscreen hero; turns solid on scroll.",
+  "target": ["header"],
+  "sectionType": "header-transparent",
+  "group": "header",
+  "slot": "core",
+  "coreGroup": "site-header",
+  "snippets": [],
+  "tags": ["header", "transparent", "overlay", "hero"],
+  "preset": {}
+}

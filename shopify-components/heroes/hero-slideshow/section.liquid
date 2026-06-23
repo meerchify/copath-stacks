@@ -1,0 +1,116 @@
+<section
+  class="hero-ss reveal"
+  data-autoplay="{{ section.settings.autoplay }}"
+  data-interval="{{ section.settings.interval | times: 1000 }}"
+>
+  <div class="hero-ss__track" data-track>
+    {%- for block in section.blocks -%}
+      <div class="hero-ss__slide" data-slide style="--ss-overlay: {{ block.settings.overlay_opacity | divided_by: 100.0 }};" {{ block.shopify_attributes }}>
+        {%- if block.settings.image -%}
+          {%- assign ss_loading = 'lazy' -%}{%- if forloop.first -%}{%- assign ss_loading = 'eager' -%}{%- endif -%}
+          <div class="hero-ss__media">
+            {{ block.settings.image | image_url: width: 2400 | image_tag: loading: ss_loading, class: 'hero-ss__img', widths: '1200, 1800, 2400', sizes: '100vw' }}
+          </div>
+        {%- endif -%}
+        <div class="page-width hero-ss__inner hero-ss__inner--{{ block.settings.text_align }}">
+          {%- if block.settings.eyebrow != blank -%}<p class="eyebrow hero-ss__eyebrow">{{ block.settings.eyebrow }}</p>{%- endif -%}
+          {%- if block.settings.heading != blank -%}<h2 class="hero-ss__title">{{ block.settings.heading }}</h2>{%- endif -%}
+          {%- if block.settings.button_label != blank -%}
+            <a class="btn btn--primary hero-ss__cta" href="{{ block.settings.button_link | default: '#' }}">{{ block.settings.button_label }}</a>
+          {%- endif -%}
+        </div>
+      </div>
+    {%- endfor -%}
+  </div>
+
+  {%- if section.blocks.size > 1 -%}
+    <button class="hero-ss__arrow hero-ss__arrow--prev" data-prev aria-label="Previous">&#8249;</button>
+    <button class="hero-ss__arrow hero-ss__arrow--next" data-next aria-label="Next">&#8250;</button>
+    <div class="hero-ss__dots" data-dots>
+      {%- for block in section.blocks -%}
+        <button class="hero-ss__dot{% if forloop.first %} is-active{% endif %}" data-dot="{{ forloop.index0 }}" aria-label="Go to slide {{ forloop.index }}"></button>
+      {%- endfor -%}
+    </div>
+  {%- endif -%}
+</section>
+
+{% stylesheet %}
+  .hero-ss { position: relative; overflow: hidden; }
+  .hero-ss__track { display: flex; transition: transform 0.6s var(--ease-spring, cubic-bezier(0.16,1,0.3,1)); }
+  .hero-ss__slide { position: relative; flex: 0 0 100%; min-height: clamp(440px, 72vh, 760px); display: flex; align-items: center; color: #fff; }
+  .hero-ss__media { position: absolute; inset: 0; }
+  .hero-ss__img { width: 100%; height: 100%; object-fit: cover; }
+  .hero-ss__slide::after { content: ''; position: absolute; inset: 0; background: rgba(0,0,0,var(--ss-overlay)); }
+  .hero-ss__inner { position: relative; z-index: 1; max-width: 640px; }
+  .hero-ss__inner--center { margin-inline: auto; text-align: center; }
+  .hero-ss__eyebrow { color: #fff; opacity: 0.85; }
+  .hero-ss__title { font-family: var(--font-heading--family, var(--font-primary--family)); font-weight: 700; font-size: clamp(2.2rem, 5vw, 4.25rem); line-height: 1.02; letter-spacing: -0.03em; }
+  .hero-ss__cta { margin-top: 1.5rem; }
+  .hero-ss__arrow { position: absolute; top: 50%; transform: translateY(-50%); z-index: 2; width: 44px; height: 44px; border-radius: 999px; border: none; background: rgba(255,255,255,0.85); color: #111; font-size: 1.5rem; line-height: 1; cursor: pointer; display: grid; place-items: center; }
+  .hero-ss__arrow--prev { left: 16px; }
+  .hero-ss__arrow--next { right: 16px; }
+  .hero-ss__dots { position: absolute; bottom: 18px; left: 0; right: 0; z-index: 2; display: flex; gap: 0.5rem; justify-content: center; }
+  .hero-ss__dot { width: 9px; height: 9px; border-radius: 999px; border: none; background: rgba(255,255,255,0.5); cursor: pointer; padding: 0; }
+  .hero-ss__dot.is-active { background: #fff; width: 26px; }
+{% endstylesheet %}
+
+{% javascript %}
+  (function () {
+    function setup(root) {
+      var track = root.querySelector('[data-track]');
+      var slides = root.querySelectorAll('[data-slide]');
+      if (!track || slides.length < 2) return;
+      var dots = root.querySelectorAll('[data-dot]');
+      var i = 0, timer = null;
+      var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      var interval = parseInt(root.getAttribute('data-interval') || '5000', 10);
+      var autoplay = root.getAttribute('data-autoplay') === 'true' && !reduce;
+      function go(n) {
+        i = (n + slides.length) % slides.length;
+        track.style.transform = 'translateX(' + (-100 * i) + '%)';
+        dots.forEach(function (d, idx) { d.classList.toggle('is-active', idx === i); });
+      }
+      function start() { if (autoplay) { stop(); timer = setInterval(function () { go(i + 1); }, interval); } }
+      function stop() { if (timer) clearInterval(timer); }
+      var prev = root.querySelector('[data-prev]');
+      var next = root.querySelector('[data-next]');
+      if (prev) prev.addEventListener('click', function () { go(i - 1); start(); });
+      if (next) next.addEventListener('click', function () { go(i + 1); start(); });
+      dots.forEach(function (d) { d.addEventListener('click', function () { go(parseInt(d.getAttribute('data-dot'), 10)); start(); }); });
+      root.addEventListener('mouseenter', stop);
+      root.addEventListener('mouseleave', start);
+      go(0); start();
+    }
+    document.querySelectorAll('.hero-ss').forEach(setup);
+  })();
+{% endjavascript %}
+
+{% schema %}
+{
+  "name": "Hero — Slideshow",
+  "tag": "section",
+  "max_blocks": 6,
+  "settings": [
+    { "type": "checkbox", "id": "autoplay", "label": "Autoplay", "default": true },
+    { "type": "range", "id": "interval", "min": 3, "max": 10, "step": 1, "unit": "s", "label": "Interval", "default": 5 }
+  ],
+  "blocks": [
+    {
+      "type": "slide",
+      "name": "Slide",
+      "settings": [
+        { "type": "image_picker", "id": "image", "label": "Image" },
+        { "type": "range", "id": "overlay_opacity", "min": 0, "max": 80, "step": 5, "unit": "%", "label": "Overlay", "default": 30 },
+        { "type": "text", "id": "eyebrow", "label": "Eyebrow" },
+        { "type": "text", "id": "heading", "label": "Heading", "default": "Slide headline" },
+        { "type": "select", "id": "text_align", "label": "Text alignment", "default": "left", "options": [ { "value": "left", "label": "Left" }, { "value": "center", "label": "Center" } ] },
+        { "type": "text", "id": "button_label", "label": "Button", "default": "Shop now" },
+        { "type": "url", "id": "button_link", "label": "Button link" }
+      ]
+    }
+  ],
+  "presets": [
+    { "name": "Hero — Slideshow", "blocks": [ { "type": "slide" }, { "type": "slide" } ] }
+  ]
+}
+{% endschema %}

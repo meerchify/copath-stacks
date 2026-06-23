@@ -1,0 +1,20 @@
+{
+  "id": "collection-list",
+  "name": "Collection list",
+  "category": "collection",
+  "description": "Shop-by-category tiles with image, gradient overlay and hover zoom.",
+  "target": ["index", "page"],
+  "sectionType": "collection-list",
+  "group": null,
+  "slot": "optional",
+  "snippets": [],
+  "tags": ["categories", "tiles", "navigation"],
+  "preset": {
+    "blocks": {
+      "c1": { "type": "category", "settings": { "title": "New arrivals" } },
+      "c2": { "type": "category", "settings": { "title": "Best sellers" } },
+      "c3": { "type": "category", "settings": { "title": "On sale" } }
+    },
+    "block_order": ["c1", "c2", "c3"]
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "id": "announcement-bar",
+  "name": "Announcement bar",
+  "category": "headers",
+  "description": "Thin promo bar above the header. Goes into the header group.",
+  "target": ["header"],
+  "sectionType": "announcement-bar",
+  "group": "header",
+  "slot": "optional",
+  "snippets": [],
+  "tags": ["promo", "banner", "header"],
+  "preset": {}
+}

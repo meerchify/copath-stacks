@@ -1,0 +1,13 @@
+{
+  "id": "hero-minimal",
+  "name": "Hero — Minimal",
+  "category": "heroes",
+  "description": "Typography-led hero, no image. The design system carries the aesthetic.",
+  "target": ["index", "page"],
+  "sectionType": "hero-minimal",
+  "group": null,
+  "slot": "optional",
+  "snippets": [],
+  "tags": ["hero", "minimal", "editorial", "text"],
+  "preset": {}
+}

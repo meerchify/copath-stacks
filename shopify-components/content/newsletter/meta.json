@@ -1,0 +1,13 @@
+{
+  "id": "newsletter",
+  "name": "Newsletter",
+  "category": "content",
+  "description": "Email capture block wired to Shopify's customer form.",
+  "target": ["index", "page"],
+  "sectionType": "newsletter",
+  "group": null,
+  "slot": "optional",
+  "snippets": [],
+  "tags": ["email", "signup", "marketing"],
+  "preset": {}
+}

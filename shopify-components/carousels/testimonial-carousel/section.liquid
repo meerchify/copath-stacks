@@ -1,0 +1,73 @@
+<section class="section tcsl reveal">
+  <div class="page-width">
+    {%- if section.settings.heading != blank -%}
+      <header class="section__head tcsl__head"><h2 class="section__title">{{ section.settings.heading }}</h2></header>
+    {%- endif -%}
+    <div class="tcsl__track" data-scroller>
+      {%- for block in section.blocks -%}
+        <figure class="tcsl__item" {{ block.shopify_attributes }}>
+          {%- if block.settings.rating != blank -%}
+            <div class="tcsl__stars" aria-label="{{ block.settings.rating }} out of 5">
+              {%- assign r = block.settings.rating | times: 1 -%}
+              {%- for i in (1..5) -%}<span aria-hidden="true">{% if i <= r %}&#9733;{% else %}&#9734;{% endif %}</span>{%- endfor -%}
+            </div>
+          {%- endif -%}
+          <blockquote class="tcsl__quote">{{ block.settings.quote }}</blockquote>
+          <figcaption class="tcsl__author">{{ block.settings.author }}</figcaption>
+        </figure>
+      {%- endfor -%}
+    </div>
+    <div class="tcsl__nav">
+      <button class="pcsl__btn" data-prev aria-label="Previous">&#8249;</button>
+      <button class="pcsl__btn" data-next aria-label="Next">&#8250;</button>
+    </div>
+  </div>
+</section>
+
+{% stylesheet %}
+  .tcsl__head { justify-content: center; text-align: center; }
+  .tcsl__track { display: grid; grid-auto-flow: column; grid-auto-columns: clamp(280px, 60vw, 560px); gap: clamp(12px, 2vw, 24px); overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; }
+  .tcsl__track::-webkit-scrollbar { display: none; }
+  .tcsl__item { scroll-snap-align: center; margin: 0; padding: clamp(24px, 3vw, 40px); background: var(--color-surface); border: 1px solid var(--color-border); border-radius: var(--style-border-radius-cards, 12px); display: flex; flex-direction: column; gap: 1rem; }
+  .tcsl__stars { color: var(--color-accent); letter-spacing: 0.1em; }
+  .tcsl__quote { font-size: clamp(1.05rem, 1.6vw, 1.35rem); line-height: 1.5; }
+  .tcsl__author { font-size: 0.9rem; opacity: 0.65; font-weight: 600; }
+  .tcsl__nav { display: flex; gap: 0.5rem; justify-content: center; margin-top: 1.25rem; }
+{% endstylesheet %}
+
+{% javascript %}
+  (function () {
+    document.querySelectorAll('.tcsl').forEach(function (root) {
+      var sc = root.querySelector('[data-scroller]');
+      if (!sc) return;
+      function step() { return Math.max(sc.clientWidth * 0.85, 300); }
+      var p = root.querySelector('[data-prev]'), n = root.querySelector('[data-next]');
+      if (p) p.addEventListener('click', function () { sc.scrollBy({ left: -step(), behavior: 'smooth' }); });
+      if (n) n.addEventListener('click', function () { sc.scrollBy({ left: step(), behavior: 'smooth' }); });
+    });
+  })();
+{% endjavascript %}
+
+{% schema %}
+{
+  "name": "Testimonial carousel",
+  "tag": "section",
+  "settings": [
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Don't take our word for it" }
+  ],
+  "blocks": [
+    {
+      "type": "quote",
+      "name": "Quote",
+      "settings": [
+        { "type": "textarea", "id": "quote", "label": "Quote", "default": "Absolutely worth every penny." },
+        { "type": "text", "id": "author", "label": "Author", "default": "Customer" },
+        { "type": "range", "id": "rating", "min": 1, "max": 5, "step": 1, "label": "Rating", "default": 5 }
+      ]
+    }
+  ],
+  "presets": [
+    { "name": "Testimonial carousel", "blocks": [ { "type": "quote" }, { "type": "quote" }, { "type": "quote" } ] }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,14 @@
+{
+  "id": "footer-minimal",
+  "name": "Footer — Minimal",
+  "category": "footers",
+  "description": "Centered single-column footer: logo, links, copyright.",
+  "target": ["footer"],
+  "sectionType": "footer-minimal",
+  "group": "footer",
+  "slot": "core",
+  "coreGroup": "site-footer",
+  "snippets": [],
+  "tags": ["footer", "minimal", "centered"],
+  "preset": {}
+}

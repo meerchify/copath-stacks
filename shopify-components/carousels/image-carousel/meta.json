@@ -1,0 +1,20 @@
+{
+  "id": "image-carousel",
+  "name": "Image carousel",
+  "category": "carousels",
+  "description": "Scroll-snap image slider with captions and prev/next buttons.",
+  "target": ["index", "page", "product"],
+  "sectionType": "image-carousel",
+  "group": null,
+  "slot": "optional",
+  "snippets": [],
+  "tags": ["images", "carousel", "gallery", "slider"],
+  "preset": {
+    "blocks": {
+      "i1": { "type": "image" },
+      "i2": { "type": "image" },
+      "i3": { "type": "image" }
+    },
+    "block_order": ["i1", "i2", "i3"]
+  }
+}

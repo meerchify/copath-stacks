@@ -1,0 +1,47 @@
+<section class="hero-grad reveal hero-grad--{{ section.settings.text_align }}">
+  <div class="hero-grad__mesh" aria-hidden="true"></div>
+  <div class="page-width hero-grad__inner">
+    {%- if section.settings.eyebrow != blank -%}<p class="eyebrow hero-grad__eyebrow">{{ section.settings.eyebrow }}</p>{%- endif -%}
+    {%- if section.settings.heading != blank -%}<h1 class="hero-grad__title">{{ section.settings.heading }}</h1>{%- endif -%}
+    {%- if section.settings.subheading != blank -%}<p class="hero-grad__sub">{{ section.settings.subheading }}</p>{%- endif -%}
+    {%- if section.settings.button_label != blank -%}
+      <a class="btn btn--primary hero-grad__cta" href="{{ section.settings.button_link | default: '#' }}">{{ section.settings.button_label }}</a>
+    {%- endif -%}
+  </div>
+</section>
+
+{% stylesheet %}
+  .hero-grad { position: relative; overflow: hidden; background: var(--color-background); }
+  .hero-grad__mesh {
+    position: absolute; inset: -20%;
+    background:
+      radial-gradient(40% 40% at 20% 25%, color-mix(in srgb, var(--color-accent) 55%, transparent), transparent 70%),
+      radial-gradient(35% 35% at 80% 20%, color-mix(in srgb, var(--color-accent) 35%, transparent), transparent 70%),
+      radial-gradient(45% 45% at 65% 80%, color-mix(in srgb, var(--color-foreground) 18%, transparent), transparent 70%);
+    filter: blur(40px); opacity: 0.85;
+    animation: hero-grad-float 16s ease-in-out infinite alternate;
+  }
+  @keyframes hero-grad-float { from { transform: translate3d(-3%, -2%, 0) scale(1); } to { transform: translate3d(3%, 2%, 0) scale(1.15); } }
+  .hero-grad__inner { position: relative; z-index: 1; max-width: 60ch; padding-block: clamp(96px, 16vw, 220px); }
+  .hero-grad--center .hero-grad__inner { margin-inline: auto; text-align: center; }
+  .hero-grad__title { font-family: var(--font-heading--family, var(--font-primary--family)); font-weight: var(--font-heading--weight, 700); font-size: clamp(2.8rem, 8vw, 6.5rem); line-height: 0.96; letter-spacing: -0.04em; }
+  .hero-grad__sub { font-size: clamp(1.05rem, 1.8vw, 1.45rem); opacity: 0.75; margin-top: 1.25rem; }
+  .hero-grad__cta { margin-top: 2rem; }
+  @media (prefers-reduced-motion: reduce) { .hero-grad__mesh { animation: none; } }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Hero — Gradient",
+  "tag": "section",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "The future of your store" },
+    { "type": "textarea", "id": "subheading", "label": "Subheading", "default": "An animated gradient backdrop driven entirely by your accent color." },
+    { "type": "select", "id": "text_align", "label": "Text alignment", "default": "center", "options": [ { "value": "left", "label": "Left" }, { "value": "center", "label": "Center" } ] },
+    { "type": "text", "id": "button_label", "label": "Button", "default": "Explore" },
+    { "type": "url", "id": "button_link", "label": "Button link" }
+  ],
+  "presets": [ { "name": "Hero — Gradient" } ]
+}
+{% endschema %}

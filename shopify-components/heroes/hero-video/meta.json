@@ -1,0 +1,13 @@
+{
+  "id": "hero-video",
+  "name": "Hero — Video",
+  "category": "heroes",
+  "description": "Full-bleed autoplay background video with overlay and centered copy.",
+  "target": ["index", "page"],
+  "sectionType": "hero-video",
+  "group": null,
+  "slot": "optional",
+  "snippets": [],
+  "tags": ["hero", "video", "cinematic", "fullscreen"],
+  "preset": {}
+}

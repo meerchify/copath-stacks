@@ -1,0 +1,43 @@
+<header class="hdr-m" data-sticky-header>
+  <div class="page-width hdr-m__bar">
+    <a class="hdr-m__logo" href="{{ routes.root_url }}">
+      {%- if section.settings.logo -%}
+        {{ section.settings.logo | image_url: width: 320 | image_tag: loading: 'eager', widths: '160, 240, 320', class: 'hdr-m__logo-img' }}
+      {%- else -%}{{ shop.name }}{%- endif -%}
+    </a>
+    <div class="hdr-m__right">
+      <nav class="hdr-m__nav" aria-label="Primary">
+        {%- for link in section.settings.menu.links -%}
+          <a class="hdr-m__link" href="{{ link.url }}">{{ link.title }}</a>
+        {%- endfor -%}
+      </nav>
+      <a class="hdr-m__cart" href="{{ routes.cart_url }}" aria-label="Cart">
+        Cart{%- if cart.item_count > 0 -%} ({{ cart.item_count }}){%- endif -%}
+      </a>
+    </div>
+  </div>
+</header>
+
+{% stylesheet %}
+  .hdr-m { position: sticky; top: 0; z-index: 50; background: var(--color-background); }
+  .hdr-m.is-scrolled { border-bottom: 1px solid var(--color-border); }
+  .hdr-m__bar { display: flex; align-items: center; justify-content: space-between; min-height: 4rem; }
+  .hdr-m__logo { font-family: var(--font-heading--family, var(--font-primary--family)); font-weight: 700; font-size: 1.2rem; letter-spacing: -0.02em; text-decoration: none; color: var(--color-foreground); }
+  .hdr-m__logo-img { max-height: 2rem; width: auto; }
+  .hdr-m__right { display: flex; align-items: center; gap: 1.5rem; }
+  .hdr-m__nav { display: flex; gap: 1.3rem; }
+  .hdr-m__link { text-decoration: none; color: var(--color-foreground); font-size: 0.9rem; opacity: 0.8; }
+  .hdr-m__link:hover { opacity: 1; }
+  .hdr-m__cart { text-decoration: none; color: var(--color-foreground); font-size: 0.9rem; font-weight: 600; }
+  @media (max-width: 700px) { .hdr-m__nav { display: none; } }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Header — Minimal",
+  "settings": [
+    { "type": "image_picker", "id": "logo", "label": "Logo" },
+    { "type": "link_list", "id": "menu", "label": "Menu", "default": "main-menu" }
+  ]
+}
+{% endschema %}

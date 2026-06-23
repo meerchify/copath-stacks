@@ -1,0 +1,13 @@
+{
+  "id": "product-recommendations",
+  "name": "Product recommendations",
+  "category": "product",
+  "description": "Related-products grid (Shopify recommendations API) with a collection fallback.",
+  "target": ["product", "index", "page"],
+  "sectionType": "product-recommendations",
+  "group": null,
+  "slot": "optional",
+  "snippets": ["product-card"],
+  "tags": ["products", "recommendations", "related", "upsell"],
+  "preset": {}
+}

@@ -1,0 +1,21 @@
+{
+  "id": "footer-rich",
+  "name": "Footer — Rich",
+  "category": "footers",
+  "description": "Multi-column footer: brand, link columns, newsletter, payment row.",
+  "target": ["footer"],
+  "sectionType": "footer-rich",
+  "group": "footer",
+  "slot": "core",
+  "coreGroup": "site-footer",
+  "snippets": [],
+  "tags": ["footer", "rich", "columns", "newsletter"],
+  "preset": {
+    "blocks": {
+      "m1": { "type": "menu", "settings": { "heading": "Shop" } },
+      "m2": { "type": "menu", "settings": { "heading": "Company" } },
+      "nl": { "type": "newsletter" }
+    },
+    "block_order": ["m1", "m2", "nl"]
+  }
+}

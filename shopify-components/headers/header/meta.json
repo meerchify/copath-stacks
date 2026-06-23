@@ -1,0 +1,14 @@
+{
+  "id": "header",
+  "name": "Header — Classic",
+  "category": "headers",
+  "description": "Logo left, centered nav, search/account/cart icons. Sticky with scroll shadow.",
+  "target": ["header"],
+  "sectionType": "header",
+  "group": "header",
+  "slot": "core",
+  "coreGroup": "site-header",
+  "snippets": [],
+  "tags": ["header", "nav", "sticky", "classic"],
+  "preset": {}
+}

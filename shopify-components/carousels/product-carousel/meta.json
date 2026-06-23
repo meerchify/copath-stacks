@@ -1,0 +1,13 @@
+{
+  "id": "product-carousel",
+  "name": "Product carousel",
+  "category": "carousels",
+  "description": "Horizontal, scroll-snap product slider with prev/next buttons.",
+  "target": ["index", "page", "product", "collection"],
+  "sectionType": "product-carousel",
+  "group": null,
+  "slot": "optional",
+  "snippets": ["product-card"],
+  "tags": ["products", "carousel", "slider", "scroll"],
+  "preset": {}
+}

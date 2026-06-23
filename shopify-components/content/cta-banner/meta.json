@@ -1,0 +1,13 @@
+{
+  "id": "cta-banner",
+  "name": "CTA banner",
+  "category": "content",
+  "description": "Full-width call-to-action band, optional background image + overlay.",
+  "target": ["index", "page", "product", "collection"],
+  "sectionType": "cta-banner",
+  "group": null,
+  "slot": "optional",
+  "snippets": [],
+  "tags": ["cta", "banner", "conversion"],
+  "preset": {}
+}

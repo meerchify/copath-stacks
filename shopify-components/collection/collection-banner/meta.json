@@ -1,0 +1,13 @@
+{
+  "id": "collection-banner",
+  "name": "Collection banner",
+  "category": "collection",
+  "description": "Hero banner for collection pages: collection image + title + description.",
+  "target": ["collection"],
+  "sectionType": "collection-banner",
+  "group": null,
+  "slot": "optional",
+  "snippets": [],
+  "tags": ["collection", "banner", "hero"],
+  "preset": {}
+}

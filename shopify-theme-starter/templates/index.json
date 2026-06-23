@@ -8,63 +8,6 @@
  * ------------------------------------------------------------
  */
 {
-  "sections": {
-    "hero": {
-      "type": "hero",
-      "settings": {
-        "eyebrow": "New collection",
-        "heading": "Built for the way you live",
-        "subheading": "Premium products, fair prices, fast shipping. Discover the pieces everyone is talking about.",
-        "text_align": "left",
-        "button_label": "Shop now",
-        "button_label_2": "Explore"
-      }
-    },
-    "value-props": {
-      "type": "value-props",
-      "blocks": {
-        "v1": { "type": "item", "settings": { "title": "Free shipping", "text": "On all orders over $50" } },
-        "v2": { "type": "item", "settings": { "title": "30-day returns", "text": "No questions asked" } },
-        "v3": { "type": "item", "settings": { "title": "2-year warranty", "text": "On every product" } },
-        "v4": { "type": "item", "settings": { "title": "Secure checkout", "text": "Powered by Shopify" } }
-      },
-      "block_order": ["v1", "v2", "v3", "v4"]
-    },
-    "featured": {
-      "type": "featured-collection",
-      "settings": {
-        "subheading": "Best sellers",
-        "heading": "Shop the favourites",
-        "products_to_show": 8,
-        "show_view_all": true
-      }
-    },
-    "categories": {
-      "type": "collection-list",
-      "settings": { "subheading": "Browse", "heading": "Shop by category" },
-      "blocks": {
-        "c1": { "type": "category", "settings": { "title": "New arrivals" } },
-        "c2": { "type": "category", "settings": { "title": "Best sellers" } },
-        "c3": { "type": "category", "settings": { "title": "On sale" } }
-      },
-      "block_order": ["c1", "c2", "c3"]
-    },
-    "story": {
-      "type": "rich-text",
-      "settings": {
-        "eyebrow": "Our story",
-        "heading": "Made to last, designed to love",
-        "text": "<p>We started with a simple idea: great products shouldn't cost a fortune. Every item is designed in-house and built to last.</p>",
-        "button_label": "About us"
-      }
-    },
-    "newsletter": {
-      "type": "newsletter",
-      "settings": {
-        "heading": "Get 10% off your first order",
-        "text": "Join the list for new drops, restocks and members-only deals."
-      }
-    }
-  },
-  "order": ["hero", "value-props", "featured", "categories", "story", "newsletter"]
+  "sections": {},
+  "order": []
 }

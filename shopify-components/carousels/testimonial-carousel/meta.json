@@ -1,0 +1,20 @@
+{
+  "id": "testimonial-carousel",
+  "name": "Testimonial carousel",
+  "category": "carousels",
+  "description": "Swipeable scroll-snap slider of customer quotes with ratings.",
+  "target": ["index", "page", "product"],
+  "sectionType": "testimonial-carousel",
+  "group": null,
+  "slot": "optional",
+  "snippets": [],
+  "tags": ["reviews", "carousel", "social-proof", "slider"],
+  "preset": {
+    "blocks": {
+      "q1": { "type": "quote", "settings": { "quote": "Absolutely worth every penny.", "author": "Maya K.", "rating": 5 } },
+      "q2": { "type": "quote", "settings": { "quote": "The quality blew me away.", "author": "Devon L.", "rating": 5 } },
+      "q3": { "type": "quote", "settings": { "quote": "My new go-to store.", "author": "Priya S.", "rating": 5 } }
+    },
+    "block_order": ["q1", "q2", "q3"]
+  }
+}

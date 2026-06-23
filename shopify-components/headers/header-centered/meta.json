@@ -1,0 +1,14 @@
+{
+  "id": "header-centered",
+  "name": "Header — Centered",
+  "category": "headers",
+  "description": "Centered logo with utilities split left/right and nav on a second row.",
+  "target": ["header"],
+  "sectionType": "header-centered",
+  "group": "header",
+  "slot": "core",
+  "coreGroup": "site-header",
+  "snippets": [],
+  "tags": ["header", "centered", "elegant"],
+  "preset": {}
+}

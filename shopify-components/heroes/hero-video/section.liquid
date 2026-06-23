@@ -1,0 +1,47 @@
+<section class="hero-video reveal" style="--hv-overlay: {{ section.settings.overlay_opacity | divided_by: 100.0 }};">
+  <div class="hero-video__media">
+    {%- if section.settings.video -%}
+      {{ section.settings.video | video_tag: image_size: '1600x', loop: true, autoplay: true, muted: true, controls: false, class: 'hero-video__vid' }}
+    {%- elsif section.settings.image -%}
+      {{ section.settings.image | image_url: width: 2400 | image_tag: loading: 'eager', class: 'hero-video__img', widths: '1200, 1800, 2400', sizes: '100vw' }}
+    {%- endif -%}
+  </div>
+  <div class="page-width hero-video__inner">
+    {%- if section.settings.eyebrow != blank -%}<p class="eyebrow hero-video__eyebrow">{{ section.settings.eyebrow }}</p>{%- endif -%}
+    {%- if section.settings.heading != blank -%}<h1 class="hero-video__title">{{ section.settings.heading }}</h1>{%- endif -%}
+    {%- if section.settings.subheading != blank -%}<p class="hero-video__sub">{{ section.settings.subheading }}</p>{%- endif -%}
+    {%- if section.settings.button_label != blank -%}
+      <a class="btn btn--primary hero-video__cta" href="{{ section.settings.button_link | default: '#' }}">{{ section.settings.button_label }}</a>
+    {%- endif -%}
+  </div>
+</section>
+
+{% stylesheet %}
+  .hero-video { position: relative; display: flex; align-items: center; min-height: clamp(460px, 80vh, 820px); overflow: hidden; color: #fff; }
+  .hero-video__media { position: absolute; inset: 0; }
+  .hero-video__vid, .hero-video__img { width: 100%; height: 100%; object-fit: cover; }
+  .hero-video::after { content: ''; position: absolute; inset: 0; background: rgba(0,0,0,var(--hv-overlay)); }
+  .hero-video__inner { position: relative; z-index: 1; max-width: 720px; text-align: center; margin-inline: auto; }
+  .hero-video__eyebrow { color: #fff; opacity: 0.85; }
+  .hero-video__title { font-family: var(--font-heading--family, var(--font-primary--family)); font-weight: var(--font-heading--weight, 700); font-size: clamp(2.6rem, 6vw, 5rem); line-height: 1.0; letter-spacing: -0.03em; }
+  .hero-video__sub { font-size: clamp(1.05rem, 1.6vw, 1.3rem); opacity: 0.92; margin: 1rem auto 0; max-width: 48ch; }
+  .hero-video__cta { margin-top: 1.75rem; }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Hero — Video",
+  "tag": "section",
+  "settings": [
+    { "type": "video", "id": "video", "label": "Background video" },
+    { "type": "image_picker", "id": "image", "label": "Fallback image" },
+    { "type": "range", "id": "overlay_opacity", "min": 0, "max": 80, "step": 5, "unit": "%", "label": "Overlay", "default": 40 },
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Motion sells" },
+    { "type": "textarea", "id": "subheading", "label": "Subheading", "default": "A cinematic full-bleed video hero." },
+    { "type": "text", "id": "button_label", "label": "Button", "default": "Shop now" },
+    { "type": "url", "id": "button_link", "label": "Button link" }
+  ],
+  "presets": [ { "name": "Hero — Video" } ]
+}
+{% endschema %}

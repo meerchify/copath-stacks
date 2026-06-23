@@ -1,0 +1,59 @@
+<section class="logo-marquee reveal" style="--lm-duration: {{ section.settings.speed }}s;">
+  {%- if section.settings.heading != blank -%}
+    <p class="logo-marquee__heading page-width">{{ section.settings.heading }}</p>
+  {%- endif -%}
+  <div class="logo-marquee__viewport">
+    <div class="logo-marquee__row">
+      {%- for i in (1..2) -%}
+        <ul class="logo-marquee__set" role="list" {% if i == 2 %}aria-hidden="true"{% endif %}>
+          {%- for block in section.blocks -%}
+            <li class="logo-marquee__item" {{ block.shopify_attributes }}>
+              {%- if block.settings.image -%}
+                {{ block.settings.image | image_url: width: 320 | image_tag: loading: 'lazy', class: 'logo-marquee__img', widths: '120, 200, 320' }}
+              {%- elsif block.settings.text != blank -%}
+                <span class="logo-marquee__text">{{ block.settings.text }}</span>
+              {%- endif -%}
+            </li>
+          {%- endfor -%}
+        </ul>
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+{% stylesheet %}
+  .logo-marquee { padding-block: clamp(28px, 4vw, 56px); border-block: 1px solid var(--color-border); overflow: hidden; }
+  .logo-marquee__heading { text-align: center; text-transform: uppercase; letter-spacing: 0.12em; font-size: 0.78rem; opacity: 0.6; margin-bottom: 1.5rem; }
+  .logo-marquee__viewport { width: 100%; overflow: hidden; -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent); mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent); }
+  .logo-marquee__row { display: flex; width: max-content; animation: logo-marquee-scroll var(--lm-duration, 30s) linear infinite; }
+  .logo-marquee__set { display: flex; align-items: center; gap: clamp(32px, 6vw, 80px); list-style: none; margin: 0; padding: 0 clamp(16px, 3vw, 40px); }
+  .logo-marquee__img { height: clamp(24px, 3vw, 40px); width: auto; object-fit: contain; opacity: 0.65; filter: grayscale(1); transition: opacity 0.2s ease, filter 0.2s ease; }
+  .logo-marquee__item:hover .logo-marquee__img { opacity: 1; filter: none; }
+  .logo-marquee__text { font-weight: 700; font-size: 1.1rem; opacity: 0.6; white-space: nowrap; }
+  @keyframes logo-marquee-scroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+  @media (prefers-reduced-motion: reduce) { .logo-marquee__row { animation: none; flex-wrap: wrap; justify-content: center; } }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Logo marquee",
+  "tag": "section",
+  "settings": [
+    { "type": "text", "id": "heading", "label": "Heading", "default": "As seen in" },
+    { "type": "range", "id": "speed", "min": 15, "max": 60, "step": 5, "unit": "s", "label": "Scroll duration", "default": 30 }
+  ],
+  "blocks": [
+    {
+      "type": "logo",
+      "name": "Logo",
+      "settings": [
+        { "type": "image_picker", "id": "image", "label": "Logo image" },
+        { "type": "text", "id": "text", "label": "Text (if no image)" }
+      ]
+    }
+  ],
+  "presets": [
+    { "name": "Logo marquee", "blocks": [ { "type": "logo" }, { "type": "logo" }, { "type": "logo" }, { "type": "logo" }, { "type": "logo" } ] }
+  ]
+}
+{% endschema %}

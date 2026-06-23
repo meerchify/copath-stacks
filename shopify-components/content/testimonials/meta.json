@@ -1,0 +1,20 @@
+{
+  "id": "testimonials",
+  "name": "Testimonials",
+  "category": "content",
+  "description": "Social-proof cards with star rating, quote and author.",
+  "target": ["index", "page", "product"],
+  "sectionType": "testimonials",
+  "group": null,
+  "slot": "optional",
+  "snippets": [],
+  "tags": ["reviews", "social-proof", "trust"],
+  "preset": {
+    "blocks": {
+      "t1": { "type": "quote", "settings": { "quote": "Genuinely the best purchase I've made all year.", "author": "Alex M.", "rating": 5 } },
+      "t2": { "type": "quote", "settings": { "quote": "Fast shipping and the quality is unreal.", "author": "Sam R.", "rating": 5 } },
+      "t3": { "type": "quote", "settings": { "quote": "I keep coming back. Can't recommend enough.", "author": "Jordan T.", "rating": 5 } }
+    },
+    "block_order": ["t1", "t2", "t3"]
+  }
+}

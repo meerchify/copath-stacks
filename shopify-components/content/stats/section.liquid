@@ -1,0 +1,47 @@
+<section class="section stats reveal" style="--st-bg: {{ section.settings.background | default: 'transparent' }};">
+  <div class="page-width">
+    {%- if section.settings.heading != blank -%}
+      <header class="section__head stats__head"><h2 class="section__title">{{ section.settings.heading }}</h2></header>
+    {%- endif -%}
+    <dl class="stats__grid">
+      {%- for block in section.blocks -%}
+        <div class="stat" {{ block.shopify_attributes }}>
+          <dt class="stat__value">{{ block.settings.value }}</dt>
+          <dd class="stat__label">{{ block.settings.label }}</dd>
+        </div>
+      {%- endfor -%}
+    </dl>
+  </div>
+</section>
+
+{% stylesheet %}
+  .stats { background: var(--st-bg); }
+  .stats__head { justify-content: center; text-align: center; }
+  .stats__grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: clamp(20px, 3vw, 48px); margin: 0; text-align: center; }
+  .stat__value { font-family: var(--font-heading--family, var(--font-primary--family)); font-size: clamp(2.4rem, 5vw, 4rem); font-weight: 700; line-height: 1; letter-spacing: -0.03em; color: var(--color-accent); }
+  .stat__label { margin: 0.5rem 0 0; opacity: 0.7; font-size: 0.95rem; }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Stats",
+  "tag": "section",
+  "settings": [
+    { "type": "text", "id": "heading", "label": "Heading", "default": "By the numbers" },
+    { "type": "color", "id": "background", "label": "Background" }
+  ],
+  "blocks": [
+    {
+      "type": "stat",
+      "name": "Stat",
+      "settings": [
+        { "type": "text", "id": "value", "label": "Value", "default": "10k+" },
+        { "type": "text", "id": "label", "label": "Label", "default": "Happy customers" }
+      ]
+    }
+  ],
+  "presets": [
+    { "name": "Stats", "blocks": [ { "type": "stat" }, { "type": "stat" }, { "type": "stat" }, { "type": "stat" } ] }
+  ]
+}
+{% endschema %}

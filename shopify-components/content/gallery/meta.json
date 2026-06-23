@@ -1,0 +1,19 @@
+{
+  "id": "gallery",
+  "name": "Gallery grid",
+  "category": "content",
+  "description": "Responsive image grid (lookbook / Instagram feed) with hover zoom + links.",
+  "target": ["index", "page"],
+  "sectionType": "gallery",
+  "group": null,
+  "slot": "optional",
+  "snippets": [],
+  "tags": ["gallery", "instagram", "lookbook", "grid", "images"],
+  "preset": {
+    "blocks": {
+      "g1": { "type": "image" }, "g2": { "type": "image" },
+      "g3": { "type": "image" }, "g4": { "type": "image" }
+    },
+    "block_order": ["g1", "g2", "g3", "g4"]
+  }
+}

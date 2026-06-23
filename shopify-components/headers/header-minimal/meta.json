@@ -1,0 +1,14 @@
+{
+  "id": "header-minimal",
+  "name": "Header — Minimal",
+  "category": "headers",
+  "description": "Logo left, inline nav + text cart on the right. Bare and fast.",
+  "target": ["header"],
+  "sectionType": "header-minimal",
+  "group": "header",
+  "slot": "core",
+  "coreGroup": "site-header",
+  "snippets": [],
+  "tags": ["header", "minimal", "text"],
+  "preset": {}
+}

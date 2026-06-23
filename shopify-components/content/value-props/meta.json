@@ -1,0 +1,21 @@
+{
+  "id": "value-props",
+  "name": "Value props",
+  "category": "content",
+  "description": "Row of trust/benefit blocks (free shipping, returns, warranty…).",
+  "target": ["index", "page"],
+  "sectionType": "value-props",
+  "group": null,
+  "slot": "optional",
+  "snippets": [],
+  "tags": ["trust", "benefits", "icons"],
+  "preset": {
+    "blocks": {
+      "v1": { "type": "item", "settings": { "title": "Free shipping", "text": "On all orders over $50" } },
+      "v2": { "type": "item", "settings": { "title": "30-day returns", "text": "No questions asked" } },
+      "v3": { "type": "item", "settings": { "title": "2-year warranty", "text": "On every product" } },
+      "v4": { "type": "item", "settings": { "title": "Secure checkout", "text": "Powered by Shopify" } }
+    },
+    "block_order": ["v1", "v2", "v3", "v4"]
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "id": "footer",
+  "name": "Footer — Classic",
+  "category": "footers",
+  "description": "Single row: copyright, link menu and payment icons.",
+  "target": ["footer"],
+  "sectionType": "footer",
+  "group": "footer",
+  "slot": "core",
+  "coreGroup": "site-footer",
+  "snippets": [],
+  "tags": ["footer", "classic", "simple"],
+  "preset": {}
+}

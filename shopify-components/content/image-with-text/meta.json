@@ -1,0 +1,13 @@
+{
+  "id": "image-with-text",
+  "name": "Image with text",
+  "category": "content",
+  "description": "Classic two-column media + copy block with configurable image side.",
+  "target": ["index", "page", "product", "collection"],
+  "sectionType": "image-with-text",
+  "group": null,
+  "slot": "optional",
+  "snippets": [],
+  "tags": ["feature", "story", "media", "two-column"],
+  "preset": {}
+}

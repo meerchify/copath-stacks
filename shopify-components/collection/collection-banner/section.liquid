@@ -1,0 +1,40 @@
+<section class="coll-banner reveal coll-banner--{{ section.settings.text_align }}" style="--cb-overlay: {{ section.settings.overlay_opacity | divided_by: 100.0 }};">
+  {%- assign img = section.settings.image | default: collection.image -%}
+  {%- if img -%}
+    <div class="coll-banner__media">
+      {{ img | image_url: width: 2400 | image_tag: loading: 'eager', class: 'coll-banner__img', widths: '1200, 1800, 2400', sizes: '100vw' }}
+    </div>
+  {%- endif -%}
+  <div class="page-width coll-banner__inner">
+    <h1 class="coll-banner__title">{{ collection.title | default: 'Collection' }}</h1>
+    {%- if section.settings.show_description and collection.description != blank -%}
+      <div class="coll-banner__desc rte">{{ collection.description }}</div>
+    {%- endif -%}
+  </div>
+</section>
+
+{% stylesheet %}
+  .coll-banner { position: relative; overflow: hidden; background: var(--color-surface); }
+  .coll-banner:has(.coll-banner__media) { color: #fff; }
+  .coll-banner__media { position: absolute; inset: 0; }
+  .coll-banner__img { width: 100%; height: 100%; object-fit: cover; }
+  .coll-banner:has(.coll-banner__media)::after { content: ''; position: absolute; inset: 0; background: rgba(0,0,0,var(--cb-overlay)); }
+  .coll-banner__inner { position: relative; z-index: 1; padding-block: clamp(48px, 8vw, 120px); max-width: 60ch; }
+  .coll-banner--center .coll-banner__inner { margin-inline: auto; text-align: center; }
+  .coll-banner__title { font-family: var(--font-heading--family, var(--font-primary--family)); font-size: clamp(2rem, 5vw, 3.75rem); line-height: 1.02; letter-spacing: -0.03em; }
+  .coll-banner__desc { opacity: 0.85; margin-top: 0.75rem; }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Collection banner",
+  "tag": "section",
+  "settings": [
+    { "type": "image_picker", "id": "image", "label": "Image override", "info": "Defaults to the collection image." },
+    { "type": "range", "id": "overlay_opacity", "min": 0, "max": 80, "step": 5, "unit": "%", "label": "Overlay", "default": 35 },
+    { "type": "checkbox", "id": "show_description", "label": "Show description", "default": true },
+    { "type": "select", "id": "text_align", "label": "Text alignment", "default": "left", "options": [ { "value": "left", "label": "Left" }, { "value": "center", "label": "Center" } ] }
+  ],
+  "presets": [ { "name": "Collection banner" } ]
+}
+{% endschema %}

@@ -1,0 +1,13 @@
+{
+  "id": "rich-text",
+  "name": "Rich text",
+  "category": "content",
+  "description": "Centered editorial block: eyebrow, heading, rich body and optional CTA.",
+  "target": ["index", "page", "product", "collection"],
+  "sectionType": "rich-text",
+  "group": null,
+  "slot": "optional",
+  "snippets": [],
+  "tags": ["story", "editorial", "text"],
+  "preset": {}
+}

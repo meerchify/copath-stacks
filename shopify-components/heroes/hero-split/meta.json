@@ -1,0 +1,13 @@
+{
+  "id": "hero-split",
+  "name": "Hero — Split",
+  "category": "heroes",
+  "description": "Two-column hero: text on one side, image on the other (side configurable).",
+  "target": ["index", "page"],
+  "sectionType": "hero-split",
+  "group": null,
+  "slot": "optional",
+  "snippets": [],
+  "tags": ["hero", "split", "image", "two-column"],
+  "preset": {}
+}

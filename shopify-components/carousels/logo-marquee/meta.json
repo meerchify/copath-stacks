@@ -1,0 +1,22 @@
+{
+  "id": "logo-marquee",
+  "name": "Logo marquee",
+  "category": "carousels",
+  "description": "Infinite auto-scrolling strip of brand/press logos (CSS-only, fades at edges).",
+  "target": ["index", "page"],
+  "sectionType": "logo-marquee",
+  "group": null,
+  "slot": "optional",
+  "snippets": [],
+  "tags": ["logos", "marquee", "press", "trust", "social-proof"],
+  "preset": {
+    "blocks": {
+      "l1": { "type": "logo", "settings": { "text": "VOGUE" } },
+      "l2": { "type": "logo", "settings": { "text": "FORBES" } },
+      "l3": { "type": "logo", "settings": { "text": "WIRED" } },
+      "l4": { "type": "logo", "settings": { "text": "GQ" } },
+      "l5": { "type": "logo", "settings": { "text": "ELLE" } }
+    },
+    "block_order": ["l1", "l2", "l3", "l4", "l5"]
+  }
+}

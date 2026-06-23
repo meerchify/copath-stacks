@@ -1,0 +1,40 @@
+<footer class="ftr">
+  <div class="page-width ftr__bar">
+    <div class="ftr__copyright">
+      &copy; {{ 'now' | date: '%Y' }} {{ shop.name }}
+    </div>
+    <nav class="ftr__links" aria-label="Footer">
+      {%- for link in section.settings.menu.links -%}
+        <a class="ftr__link" href="{{ link.url }}">{{ link.title }}</a>
+      {%- endfor -%}
+    </nav>
+    <div class="ftr__payment">
+      {%- if section.settings.show_payment_icons -%}
+        {%- for type in shop.enabled_payment_types -%}
+          {{ type | payment_type_svg_tag: class: 'ftr__pay' }}
+        {%- endfor -%}
+      {%- endif -%}
+    </div>
+  </div>
+</footer>
+
+{% stylesheet %}
+  .ftr { border-top: 1px solid var(--color-border); margin-top: clamp(40px, 7vw, 96px); }
+  .ftr__bar { display: flex; align-items: center; justify-content: space-between; gap: 1.5rem; padding-block: 1.75rem; flex-wrap: wrap; }
+  .ftr__copyright { font-size: 0.85rem; opacity: 0.7; }
+  .ftr__links { display: flex; gap: 1.2rem; flex-wrap: wrap; }
+  .ftr__link { text-decoration: none; color: var(--color-foreground); font-size: 0.85rem; opacity: 0.8; }
+  .ftr__link:hover { opacity: 1; }
+  .ftr__payment { display: flex; gap: 0.4rem; align-items: center; }
+  .ftr__pay { height: 22px; width: auto; }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Footer",
+  "settings": [
+    { "type": "link_list", "id": "menu", "label": "Menu", "default": "footer" },
+    { "type": "checkbox", "id": "show_payment_icons", "label": "Show payment icons", "default": true }
+  ]
+}
+{% endschema %}

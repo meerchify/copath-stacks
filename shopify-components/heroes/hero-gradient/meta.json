@@ -1,0 +1,13 @@
+{
+  "id": "hero-gradient",
+  "name": "Hero — Gradient",
+  "category": "heroes",
+  "description": "Text-led hero on an animated gradient-mesh backdrop built from your accent color.",
+  "target": ["index", "page"],
+  "sectionType": "hero-gradient",
+  "group": null,
+  "slot": "optional",
+  "snippets": [],
+  "tags": ["hero", "gradient", "animated", "modern", "tech"],
+  "preset": {}
+}

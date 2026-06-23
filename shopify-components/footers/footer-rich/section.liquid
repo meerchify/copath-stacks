@@ -1,0 +1,106 @@
+<footer class="ftr-r">
+  <div class="page-width">
+    <div class="ftr-r__top">
+      <div class="ftr-r__brand">
+        <a class="ftr-r__logo" href="{{ routes.root_url }}">{{ shop.name }}</a>
+        {%- if section.settings.tagline != blank -%}<p class="ftr-r__tagline">{{ section.settings.tagline }}</p>{%- endif -%}
+      </div>
+
+      <div class="ftr-r__cols">
+        {%- for block in section.blocks -%}
+          {%- if block.type == 'menu' -%}
+            <div class="ftr-r__col" {{ block.shopify_attributes }}>
+              {%- if block.settings.heading != blank -%}<h3 class="ftr-r__heading">{{ block.settings.heading }}</h3>{%- endif -%}
+              <ul class="ftr-r__list" role="list">
+                {%- for link in block.settings.menu.links -%}
+                  <li><a class="ftr-r__link" href="{{ link.url }}">{{ link.title }}</a></li>
+                {%- endfor -%}
+              </ul>
+            </div>
+          {%- elsif block.type == 'newsletter' -%}
+            <div class="ftr-r__col ftr-r__col--wide" {{ block.shopify_attributes }}>
+              {%- if block.settings.heading != blank -%}<h3 class="ftr-r__heading">{{ block.settings.heading }}</h3>{%- endif -%}
+              {%- if block.settings.text != blank -%}<p class="ftr-r__text">{{ block.settings.text }}</p>{%- endif -%}
+              {%- form 'customer', class: 'ftr-r__form' -%}
+                <input type="hidden" name="contact[tags]" value="newsletter">
+                <input class="ftr-r__input" type="email" name="contact[email]" placeholder="Email address" required aria-label="Email">
+                <button class="btn btn--primary" type="submit">Join</button>
+                {%- if form.posted_successfully? -%}<p class="ftr-r__ok">Thanks!</p>{%- endif -%}
+              {%- endform -%}
+            </div>
+          {%- endif -%}
+        {%- endfor -%}
+      </div>
+    </div>
+
+    <div class="ftr-r__bottom">
+      <span class="ftr-r__copyright">&copy; {{ 'now' | date: '%Y' }} {{ shop.name }}</span>
+      {%- if section.settings.show_payment_icons -%}
+        <span class="ftr-r__payment">
+          {%- for type in shop.enabled_payment_types -%}{{ type | payment_type_svg_tag: class: 'ftr-r__pay' }}{%- endfor -%}
+        </span>
+      {%- endif -%}
+    </div>
+  </div>
+</footer>
+
+{% stylesheet %}
+  .ftr-r { border-top: 1px solid var(--color-border); background: var(--color-surface); margin-top: clamp(40px, 7vw, 96px); }
+  .ftr-r__top { display: grid; grid-template-columns: 1fr 2fr; gap: clamp(24px, 4vw, 64px); padding-block: clamp(40px, 5vw, 72px) 2rem; }
+  .ftr-r__logo { font-family: var(--font-heading--family, var(--font-primary--family)); font-weight: 700; font-size: 1.4rem; text-decoration: none; color: var(--color-foreground); }
+  .ftr-r__tagline { opacity: 0.7; margin-top: 0.6rem; max-width: 32ch; font-size: 0.9rem; }
+  .ftr-r__cols { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: clamp(16px, 2.5vw, 40px); }
+  .ftr-r__col--wide { grid-column: span 2; }
+  .ftr-r__heading { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.08em; opacity: 0.6; margin-bottom: 0.9rem; }
+  .ftr-r__list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 0.55rem; }
+  .ftr-r__link { text-decoration: none; color: var(--color-foreground); font-size: 0.9rem; opacity: 0.85; }
+  .ftr-r__link:hover { opacity: 1; }
+  .ftr-r__text { opacity: 0.75; font-size: 0.9rem; margin-bottom: 0.9rem; }
+  .ftr-r__form { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+  .ftr-r__input { flex: 1 1 200px; padding: 0.7rem 0.9rem; border: 1px solid var(--color-border); border-radius: var(--style-border-radius-inputs, 6px); background: var(--color-background); color: var(--color-foreground); }
+  .ftr-r__ok { flex-basis: 100%; color: var(--color-accent); font-size: 0.85rem; }
+  .ftr-r__bottom { display: flex; align-items: center; justify-content: space-between; gap: 1rem; border-top: 1px solid var(--color-border); padding-block: 1.25rem; flex-wrap: wrap; }
+  .ftr-r__copyright { font-size: 0.85rem; opacity: 0.7; }
+  .ftr-r__payment { display: flex; gap: 0.4rem; }
+  .ftr-r__pay { height: 22px; width: auto; }
+  @media (max-width: 800px) { .ftr-r__top { grid-template-columns: 1fr; } .ftr-r__col--wide { grid-column: auto; } }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Footer — Rich",
+  "settings": [
+    { "type": "text", "id": "tagline", "label": "Tagline", "default": "Quality goods, fair prices, fast shipping." },
+    { "type": "checkbox", "id": "show_payment_icons", "label": "Show payment icons", "default": true }
+  ],
+  "blocks": [
+    {
+      "type": "menu",
+      "name": "Link column",
+      "settings": [
+        { "type": "text", "id": "heading", "label": "Heading", "default": "Shop" },
+        { "type": "link_list", "id": "menu", "label": "Menu", "default": "footer" }
+      ]
+    },
+    {
+      "type": "newsletter",
+      "name": "Newsletter",
+      "limit": 1,
+      "settings": [
+        { "type": "text", "id": "heading", "label": "Heading", "default": "Stay in the loop" },
+        { "type": "text", "id": "text", "label": "Text", "default": "Sign up for new drops and offers." }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Footer — Rich",
+      "blocks": [
+        { "type": "menu", "settings": { "heading": "Shop" } },
+        { "type": "menu", "settings": { "heading": "Company" } },
+        { "type": "newsletter" }
+      ]
+    }
+  ]
+}
+{% endschema %}

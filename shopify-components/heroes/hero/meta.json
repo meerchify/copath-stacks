@@ -1,0 +1,13 @@
+{
+  "id": "hero",
+  "name": "Hero — Image",
+  "category": "heroes",
+  "description": "Full-bleed hero with background image, overlay, eyebrow, headline and two CTAs.",
+  "target": ["index", "page"],
+  "sectionType": "hero",
+  "group": null,
+  "slot": "optional",
+  "snippets": [],
+  "tags": ["hero", "landing", "image", "bold"],
+  "preset": {}
+}

@@ -1,0 +1,43 @@
+<header class="hdr-t" data-sticky-header>
+  <div class="page-width hdr-t__bar">
+    <a class="hdr-t__logo" href="{{ routes.root_url }}">
+      {%- if section.settings.logo -%}
+        {{ section.settings.logo | image_url: width: 360 | image_tag: loading: 'eager', widths: '180, 240, 360', class: 'hdr-t__logo-img' }}
+      {%- else -%}{{ shop.name }}{%- endif -%}
+    </a>
+    <nav class="hdr-t__nav" aria-label="Primary">
+      {%- for link in section.settings.menu.links -%}
+        <a class="hdr-t__link" href="{{ link.url }}">{{ link.title }}</a>
+      {%- endfor -%}
+    </nav>
+    <a class="hdr-t__cart" href="{{ routes.cart_url }}" aria-label="Cart">
+      <svg viewBox="0 0 24 24" width="21" height="21" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M6 7h15l-1.6 10H7.6z"/><path d="M6 7 5 3H2"/><circle cx="9" cy="21" r="1.3"/><circle cx="18" cy="21" r="1.3"/></svg>
+      {%- if cart.item_count > 0 -%}<span class="hdr-t__count">{{ cart.item_count }}</span>{%- endif -%}
+    </a>
+  </div>
+</header>
+
+{% stylesheet %}
+  /* Overlays the first section below it (e.g. a fullscreen hero). Turns solid on scroll. */
+  .hdr-t { position: fixed; inset: 0 0 auto 0; z-index: 50; color: #fff; transition: background 0.3s ease, color 0.3s ease; }
+  .hdr-t.is-scrolled { background: var(--color-background); color: var(--color-foreground); border-bottom: 1px solid var(--color-border); }
+  .hdr-t__bar { display: flex; align-items: center; gap: 1.5rem; min-height: 4.5rem; }
+  .hdr-t__logo { font-family: var(--font-heading--family, var(--font-primary--family)); font-weight: 700; font-size: 1.3rem; letter-spacing: -0.02em; text-decoration: none; color: inherit; }
+  .hdr-t__logo-img { max-height: 2.2rem; width: auto; }
+  .hdr-t__nav { display: flex; gap: 1.6rem; margin-inline: auto; }
+  .hdr-t__link { text-decoration: none; color: inherit; font-size: 0.95rem; opacity: 0.9; }
+  .hdr-t__link:hover { opacity: 1; }
+  .hdr-t__cart { color: inherit; display: inline-flex; position: relative; }
+  .hdr-t__count { position: absolute; top: -7px; right: -8px; background: var(--color-accent); color: var(--color-on-accent); font-size: 0.65rem; font-weight: 700; min-width: 16px; height: 16px; display: grid; place-items: center; border-radius: 999px; padding: 0 4px; }
+  @media (max-width: 800px) { .hdr-t__nav { display: none; } }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Header — Transparent",
+  "settings": [
+    { "type": "image_picker", "id": "logo", "label": "Logo" },
+    { "type": "link_list", "id": "menu", "label": "Menu", "default": "main-menu" }
+  ]
+}
+{% endschema %}

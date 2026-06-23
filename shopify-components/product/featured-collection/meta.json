@@ -1,0 +1,13 @@
+{
+  "id": "featured-collection",
+  "name": "Featured collection",
+  "category": "product",
+  "description": "Product grid from a chosen collection, with placeholder fallback when empty.",
+  "target": ["index", "page"],
+  "sectionType": "featured-collection",
+  "group": null,
+  "slot": "optional",
+  "snippets": ["product-card"],
+  "tags": ["products", "grid", "shop"],
+  "preset": {}
+}

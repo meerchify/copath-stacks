@@ -1,0 +1,20 @@
+{
+  "id": "faq",
+  "name": "FAQ accordion",
+  "category": "content",
+  "description": "Two-column FAQ with native <details> accordions (no JS).",
+  "target": ["index", "page", "product"],
+  "sectionType": "faq",
+  "group": null,
+  "slot": "optional",
+  "snippets": [],
+  "tags": ["faq", "accordion", "support", "questions"],
+  "preset": {
+    "blocks": {
+      "f1": { "type": "item", "settings": { "question": "What is your return policy?", "answer": "<p>Free returns within 30 days.</p>" } },
+      "f2": { "type": "item", "settings": { "question": "How long is shipping?", "answer": "<p>2–5 business days.</p>" } },
+      "f3": { "type": "item", "settings": { "question": "Do you ship internationally?", "answer": "<p>Yes, worldwide.</p>" } }
+    },
+    "block_order": ["f1", "f2", "f3"]
+  }
+}

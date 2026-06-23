@@ -1,0 +1,19 @@
+{
+  "id": "hero-slideshow",
+  "name": "Hero — Slideshow",
+  "category": "heroes",
+  "description": "Autoplaying full-width image slideshow with arrows, dots and per-slide copy.",
+  "target": ["index", "page"],
+  "sectionType": "hero-slideshow",
+  "group": null,
+  "slot": "optional",
+  "snippets": [],
+  "tags": ["hero", "slideshow", "carousel", "slider"],
+  "preset": {
+    "blocks": {
+      "s1": { "type": "slide", "settings": { "heading": "First slide" } },
+      "s2": { "type": "slide", "settings": { "heading": "Second slide" } }
+    },
+    "block_order": ["s1", "s2"]
+  }
+}

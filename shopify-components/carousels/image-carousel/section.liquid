@@ -1,0 +1,68 @@
+<section class="section icsl reveal">
+  <div class="page-width">
+    {%- if section.settings.heading != blank -%}
+      <header class="section__head icsl__head"><h2 class="section__title">{{ section.settings.heading }}</h2></header>
+    {%- endif -%}
+    <div class="icsl__track" data-scroller>
+      {%- for block in section.blocks -%}
+        <figure class="icsl__item" {{ block.shopify_attributes }}>
+          {%- if block.settings.image -%}
+            {{ block.settings.image | image_url: width: 1200 | image_tag: loading: 'lazy', class: 'icsl__img', widths: '400, 700, 1000, 1200', sizes: '(max-width: 700px) 80vw, 40vw' }}
+          {%- else -%}
+            {{ 'lifestyle-2' | placeholder_svg_tag: 'icsl__img placeholder' }}
+          {%- endif -%}
+          {%- if block.settings.caption != blank -%}<figcaption class="icsl__cap">{{ block.settings.caption }}</figcaption>{%- endif -%}
+        </figure>
+      {%- endfor -%}
+    </div>
+    <div class="icsl__nav">
+      <button class="pcsl__btn" data-prev aria-label="Previous">&#8249;</button>
+      <button class="pcsl__btn" data-next aria-label="Next">&#8250;</button>
+    </div>
+  </div>
+</section>
+
+{% stylesheet %}
+  .icsl__track { display: grid; grid-auto-flow: column; grid-auto-columns: clamp(260px, 42vw, 480px); gap: clamp(12px, 2vw, 24px); overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; }
+  .icsl__track::-webkit-scrollbar { display: none; }
+  .icsl__item { scroll-snap-align: center; margin: 0; }
+  .icsl__img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; border-radius: var(--style-border-radius-cards, 12px); }
+  .icsl__cap { font-size: 0.85rem; opacity: 0.7; margin-top: 0.5rem; }
+  .icsl__nav { display: flex; gap: 0.5rem; justify-content: center; margin-top: 1.25rem; }
+{% endstylesheet %}
+
+{% javascript %}
+  (function () {
+    document.querySelectorAll('.icsl').forEach(function (root) {
+      var sc = root.querySelector('[data-scroller]');
+      if (!sc) return;
+      function step() { return Math.max(sc.clientWidth * 0.8, 280); }
+      var p = root.querySelector('[data-prev]'), n = root.querySelector('[data-next]');
+      if (p) p.addEventListener('click', function () { sc.scrollBy({ left: -step(), behavior: 'smooth' }); });
+      if (n) n.addEventListener('click', function () { sc.scrollBy({ left: step(), behavior: 'smooth' }); });
+    });
+  })();
+{% endjavascript %}
+
+{% schema %}
+{
+  "name": "Image carousel",
+  "tag": "section",
+  "settings": [
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Gallery" }
+  ],
+  "blocks": [
+    {
+      "type": "image",
+      "name": "Image",
+      "settings": [
+        { "type": "image_picker", "id": "image", "label": "Image" },
+        { "type": "text", "id": "caption", "label": "Caption" }
+      ]
+    }
+  ],
+  "presets": [
+    { "name": "Image carousel", "blocks": [ { "type": "image" }, { "type": "image" }, { "type": "image" } ] }
+  ]
+}
+{% endschema %}

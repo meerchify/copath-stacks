@@ -1,0 +1,54 @@
+<section class="hero-split reveal hero-split--{{ section.settings.media_side }}">
+  <div class="page-width hero-split__grid">
+    <div class="hero-split__text">
+      {%- if section.settings.eyebrow != blank -%}<p class="eyebrow">{{ section.settings.eyebrow }}</p>{%- endif -%}
+      {%- if section.settings.heading != blank -%}<h1 class="hero-split__title">{{ section.settings.heading }}</h1>{%- endif -%}
+      {%- if section.settings.subheading != blank -%}<p class="hero-split__sub">{{ section.settings.subheading }}</p>{%- endif -%}
+      <div class="hero-split__actions">
+        {%- if section.settings.button_label != blank -%}
+          <a class="btn btn--primary" href="{{ section.settings.button_link | default: '#' }}">{{ section.settings.button_label }}</a>
+        {%- endif -%}
+        {%- if section.settings.button_label_2 != blank -%}
+          <a class="btn btn--ghost" href="{{ section.settings.button_link_2 | default: '#' }}">{{ section.settings.button_label_2 }}</a>
+        {%- endif -%}
+      </div>
+    </div>
+    <div class="hero-split__media">
+      {%- if section.settings.image -%}
+        {{ section.settings.image | image_url: width: 1400 | image_tag: loading: 'eager', class: 'hero-split__img', widths: '600, 900, 1200, 1400', sizes: '(max-width: 900px) 100vw, 50vw' }}
+      {%- else -%}
+        {{ 'lifestyle-1' | placeholder_svg_tag: 'hero-split__img placeholder' }}
+      {%- endif -%}
+    </div>
+  </div>
+</section>
+
+{% stylesheet %}
+  .hero-split__grid { display: grid; grid-template-columns: 1fr 1fr; align-items: center; gap: clamp(24px, 5vw, 72px); padding-block: clamp(40px, 6vw, 96px); }
+  .hero-split--right .hero-split__media { order: 2; }
+  .hero-split__title { font-family: var(--font-heading--family, var(--font-primary--family)); font-weight: var(--font-heading--weight, 700); font-size: clamp(2.2rem, 4.5vw, 4rem); line-height: 1.03; letter-spacing: -0.03em; margin-bottom: 1rem; }
+  .hero-split__sub { font-size: clamp(1rem, 1.5vw, 1.2rem); opacity: 0.78; max-width: 48ch; }
+  .hero-split__actions { display: flex; gap: 0.75rem; margin-top: 1.75rem; flex-wrap: wrap; }
+  .hero-split__media { border-radius: var(--style-border-radius-cards, 12px); overflow: hidden; aspect-ratio: 4 / 5; background: var(--color-surface); }
+  .hero-split__img { width: 100%; height: 100%; object-fit: cover; }
+  @media (max-width: 900px) { .hero-split__grid { grid-template-columns: 1fr; } .hero-split--right .hero-split__media { order: 0; } }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Hero — Split",
+  "tag": "section",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "New season" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Designed to stand out" },
+    { "type": "textarea", "id": "subheading", "label": "Subheading", "default": "A bold statement piece with a clear call to action." },
+    { "type": "image_picker", "id": "image", "label": "Image" },
+    { "type": "select", "id": "media_side", "label": "Image side", "default": "right", "options": [ { "value": "left", "label": "Left" }, { "value": "right", "label": "Right" } ] },
+    { "type": "text", "id": "button_label", "label": "Primary button", "default": "Shop now" },
+    { "type": "url", "id": "button_link", "label": "Primary link" },
+    { "type": "text", "id": "button_label_2", "label": "Secondary button" },
+    { "type": "url", "id": "button_link_2", "label": "Secondary link" }
+  ],
+  "presets": [ { "name": "Hero — Split" } ]
+}
+{% endschema %}

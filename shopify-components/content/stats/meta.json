@@ -1,0 +1,21 @@
+{
+  "id": "stats",
+  "name": "Stats",
+  "category": "content",
+  "description": "Big-number stat blocks (customers, reviews, years…) on a responsive grid.",
+  "target": ["index", "page", "product"],
+  "sectionType": "stats",
+  "group": null,
+  "slot": "optional",
+  "snippets": [],
+  "tags": ["stats", "numbers", "metrics", "trust"],
+  "preset": {
+    "blocks": {
+      "s1": { "type": "stat", "settings": { "value": "10k+", "label": "Happy customers" } },
+      "s2": { "type": "stat", "settings": { "value": "4.9", "label": "Average rating" } },
+      "s3": { "type": "stat", "settings": { "value": "48h", "label": "Fast dispatch" } },
+      "s4": { "type": "stat", "settings": { "value": "30d", "label": "Free returns" } }
+    },
+    "block_order": ["s1", "s2", "s3", "s4"]
+  }
+}
