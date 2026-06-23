@@ -1,0 +1,48 @@
+<section class="section vpb reveal">
+  <div class="page-width">
+    <div class="vpb__grid">
+      {%- for block in section.blocks -%}
+        <div class="vpb__card" {{ block.shopify_attributes }}>
+          {%- if block.settings.icon != blank -%}
+            <span class="vpb__icon" aria-hidden="true">{{ block.settings.icon }}</span>
+          {%- endif -%}
+          <h3 class="vpb__title">{{ block.settings.title }}</h3>
+          {%- if block.settings.text != blank -%}<p class="vpb__text">{{ block.settings.text }}</p>{%- endif -%}
+        </div>
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+{% stylesheet %}
+  .vpb__grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: clamp(12px, 2vw, 20px); }
+  .vpb__card { padding: clamp(20px, 2.5vw, 32px); border: 1px solid var(--color-border); border-radius: var(--style-border-radius-cards, 12px); background: var(--color-surface); text-align: center; display: flex; flex-direction: column; align-items: center; gap: 0.6rem; }
+  .vpb__icon { display: grid; place-items: center; width: 48px; height: 48px; border-radius: 999px; background: color-mix(in srgb, var(--color-accent) 12%, transparent); color: var(--color-accent); font-size: 1.4rem; }
+  .vpb__title { font-size: 1.05rem; font-weight: 600; }
+  .vpb__text { font-size: 0.9rem; opacity: 0.7; line-height: 1.45; }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Value props — Boxed",
+  "tag": "section",
+  "max_blocks": 4,
+  "blocks": [
+    {
+      "type": "item",
+      "name": "Item",
+      "settings": [
+        { "type": "text", "id": "icon", "label": "Icon (emoji)", "default": "★" },
+        { "type": "text", "id": "title", "label": "Title", "default": "Free shipping" },
+        { "type": "text", "id": "text", "label": "Text", "default": "On all orders over $50" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Value props — Boxed",
+      "blocks": [ { "type": "item" }, { "type": "item" }, { "type": "item" }, { "type": "item" } ]
+    }
+  ]
+}
+{% endschema %}

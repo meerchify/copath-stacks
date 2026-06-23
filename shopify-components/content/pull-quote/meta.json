@@ -1,0 +1,13 @@
+{
+  "id": "pull-quote",
+  "name": "Pull quote",
+  "category": "content",
+  "description": "Oversized centered editorial quote with attribution.",
+  "target": ["index", "page", "product"],
+  "sectionType": "pull-quote",
+  "group": null,
+  "slot": "optional",
+  "snippets": [],
+  "tags": ["quote", "editorial", "brand", "statement"],
+  "preset": {}
+}

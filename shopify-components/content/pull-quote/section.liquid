@@ -1,0 +1,26 @@
+<section class="section pull-quote reveal" style="--pq-bg: {{ section.settings.background | default: 'transparent' }};">
+  <div class="page-width pull-quote__inner">
+    <blockquote class="pull-quote__q">{{ section.settings.quote }}</blockquote>
+    {%- if section.settings.author != blank -%}<cite class="pull-quote__cite">— {{ section.settings.author }}</cite>{%- endif -%}
+  </div>
+</section>
+
+{% stylesheet %}
+  .pull-quote { background: var(--pq-bg); }
+  .pull-quote__inner { max-width: 900px; margin-inline: auto; text-align: center; }
+  .pull-quote__q { font-family: var(--font-heading--family, var(--font-primary--family)); font-size: clamp(1.6rem, 4vw, 3.25rem); line-height: 1.2; letter-spacing: -0.02em; text-wrap: balance; }
+  .pull-quote__cite { display: block; margin-top: 1.25rem; font-style: normal; font-size: 0.95rem; opacity: 0.6; }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Pull quote",
+  "tag": "section",
+  "settings": [
+    { "type": "textarea", "id": "quote", "label": "Quote", "default": "We obsess over the details so you don't have to." },
+    { "type": "text", "id": "author", "label": "Attribution", "default": "The founders" },
+    { "type": "color", "id": "background", "label": "Background" }
+  ],
+  "presets": [ { "name": "Pull quote" } ]
+}
+{% endschema %}

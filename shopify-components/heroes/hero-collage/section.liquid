@@ -1,0 +1,50 @@
+<section class="hero-collage reveal">
+  <div class="page-width hero-collage__grid">
+    <div class="hero-collage__text">
+      {%- if section.settings.eyebrow != blank -%}<p class="eyebrow">{{ section.settings.eyebrow }}</p>{%- endif -%}
+      {%- if section.settings.heading != blank -%}<h1 class="hero-collage__title">{{ section.settings.heading }}</h1>{%- endif -%}
+      {%- if section.settings.subheading != blank -%}<p class="hero-collage__sub">{{ section.settings.subheading }}</p>{%- endif -%}
+      {%- if section.settings.button_label != blank -%}
+        <a class="btn btn--primary hero-collage__cta" href="{{ section.settings.button_link | default: '#' }}">{{ section.settings.button_label }}</a>
+      {%- endif -%}
+    </div>
+    <div class="hero-collage__media">
+      <div class="hero-collage__tile hero-collage__tile--a">
+        {%- if section.settings.image_1 -%}{{ section.settings.image_1 | image_url: width: 800 | image_tag: loading: 'eager', class: 'hero-collage__img', widths: '400, 600, 800' }}{%- else -%}{{ 'lifestyle-1' | placeholder_svg_tag: 'hero-collage__img placeholder' }}{%- endif -%}
+      </div>
+      <div class="hero-collage__tile hero-collage__tile--b">
+        {%- if section.settings.image_2 -%}{{ section.settings.image_2 | image_url: width: 600 | image_tag: loading: 'lazy', class: 'hero-collage__img', widths: '300, 450, 600' }}{%- else -%}{{ 'lifestyle-2' | placeholder_svg_tag: 'hero-collage__img placeholder' }}{%- endif -%}
+      </div>
+    </div>
+  </div>
+</section>
+
+{% stylesheet %}
+  .hero-collage__grid { display: grid; grid-template-columns: 1fr 1fr; align-items: center; gap: clamp(24px, 5vw, 72px); padding-block: clamp(40px, 6vw, 96px); }
+  .hero-collage__title { font-family: var(--font-heading--family, var(--font-primary--family)); font-weight: 700; font-size: clamp(2.2rem, 5vw, 4.25rem); line-height: 1.0; letter-spacing: -0.03em; margin-bottom: 1rem; }
+  .hero-collage__sub { font-size: clamp(1rem, 1.5vw, 1.2rem); opacity: 0.78; max-width: 46ch; }
+  .hero-collage__cta { margin-top: 1.75rem; }
+  .hero-collage__media { position: relative; display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; }
+  .hero-collage__tile { border-radius: var(--style-border-radius-cards, 12px); overflow: hidden; background: var(--color-surface); }
+  .hero-collage__tile--a { aspect-ratio: 3 / 4; }
+  .hero-collage__tile--b { aspect-ratio: 3 / 4; margin-top: 2.5rem; }
+  .hero-collage__img { width: 100%; height: 100%; object-fit: cover; }
+  @media (max-width: 900px) { .hero-collage__grid { grid-template-columns: 1fr; } .hero-collage__tile--b { margin-top: 0; } }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Hero — Collage",
+  "tag": "section",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Lookbook" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Curated for the season" },
+    { "type": "textarea", "id": "subheading", "label": "Subheading", "default": "Two-image collage with a strong typographic lead." },
+    { "type": "image_picker", "id": "image_1", "label": "Image 1" },
+    { "type": "image_picker", "id": "image_2", "label": "Image 2" },
+    { "type": "text", "id": "button_label", "label": "Button", "default": "Shop now" },
+    { "type": "url", "id": "button_link", "label": "Button link" }
+  ],
+  "presets": [ { "name": "Hero — Collage" } ]
+}
+{% endschema %}

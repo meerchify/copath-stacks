@@ -1,0 +1,47 @@
+<section class="section pda reveal">
+  <div class="page-width pda__inner">
+    {%- for block in section.blocks -%}
+      <details class="pda__item"{% if forloop.first %} open{% endif %} {{ block.shopify_attributes }}>
+        <summary class="pda__q">
+          <span>{{ block.settings.title }}</span>
+          <span class="pda__icon" aria-hidden="true"></span>
+        </summary>
+        <div class="pda__a rte">{{ block.settings.content }}</div>
+      </details>
+    {%- endfor -%}
+  </div>
+</section>
+
+{% stylesheet %}
+  .pda__inner { max-width: 820px; margin-inline: auto; }
+  .pda__item { border-bottom: 1px solid var(--color-border); }
+  .pda__q { display: flex; align-items: center; justify-content: space-between; gap: 1rem; cursor: pointer; list-style: none; padding-block: 1.1rem; font-weight: 600; }
+  .pda__q::-webkit-details-marker { display: none; }
+  .pda__icon { position: relative; width: 14px; height: 14px; flex: none; }
+  .pda__icon::before, .pda__icon::after { content: ''; position: absolute; background: var(--color-foreground); transition: transform 0.2s ease; }
+  .pda__icon::before { top: 6px; left: 0; width: 14px; height: 2px; }
+  .pda__icon::after { left: 6px; top: 0; width: 2px; height: 14px; }
+  .pda__item[open] .pda__icon::after { transform: scaleY(0); }
+  .pda__a { padding-bottom: 1.2rem; opacity: 0.8; line-height: 1.6; }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Product details",
+  "tag": "section",
+  "blocks": [
+    {
+      "type": "panel",
+      "name": "Panel",
+      "settings": [
+        { "type": "text", "id": "title", "label": "Title", "default": "Description" },
+        { "type": "richtext", "id": "content", "label": "Content", "default": "<p>Add details about materials, fit, care or shipping.</p>" }
+      ]
+    }
+  ],
+  "presets": [
+    { "name": "Product details", "blocks": [ { "type": "panel", "settings": { "title": "Details" } }, { "type": "panel", "settings": { "title": "Shipping & returns" } } ] }
+  ],
+  "disabled_on": { "groups": ["header", "footer"] }
+}
+{% endschema %}

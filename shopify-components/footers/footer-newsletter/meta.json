@@ -1,0 +1,14 @@
+{
+  "id": "footer-newsletter",
+  "name": "Footer — Newsletter",
+  "category": "footers",
+  "description": "Footer led by a newsletter CTA band, with a minimal link row beneath.",
+  "target": ["footer"],
+  "sectionType": "footer-newsletter",
+  "group": "footer",
+  "slot": "core",
+  "coreGroup": "site-footer",
+  "snippets": [],
+  "tags": ["footer", "newsletter", "email", "v2"],
+  "preset": {}
+}

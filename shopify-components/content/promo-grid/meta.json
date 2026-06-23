@@ -1,0 +1,19 @@
+{
+  "id": "promo-grid",
+  "name": "Promo grid",
+  "category": "content",
+  "description": "2–3 image promo tiles with overlay heading + CTA (shop-by-category / campaigns).",
+  "target": ["index", "page"],
+  "sectionType": "promo-grid",
+  "group": null,
+  "slot": "optional",
+  "snippets": [],
+  "tags": ["promo", "tiles", "campaign", "category", "v2"],
+  "preset": {
+    "blocks": {
+      "p1": { "type": "promo", "settings": { "eyebrow": "Women", "heading": "New arrivals", "button_label": "Shop women" } },
+      "p2": { "type": "promo", "settings": { "eyebrow": "Men", "heading": "Best sellers", "button_label": "Shop men" } }
+    },
+    "block_order": ["p1", "p2"]
+  }
+}

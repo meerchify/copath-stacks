@@ -16,8 +16,8 @@
       {%- endfor -%}
     </div>
     <div class="icsl__nav">
-      <button class="pcsl__btn" data-prev aria-label="Previous">&#8249;</button>
-      <button class="pcsl__btn" data-next aria-label="Next">&#8250;</button>
+      <button class="icsl__btn" data-prev aria-label="Previous">&#8249;</button>
+      <button class="icsl__btn" data-next aria-label="Next">&#8250;</button>
     </div>
   </div>
 </section>
@@ -29,6 +29,8 @@
   .icsl__img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; border-radius: var(--style-border-radius-cards, 12px); }
   .icsl__cap { font-size: 0.85rem; opacity: 0.7; margin-top: 0.5rem; }
   .icsl__nav { display: flex; gap: 0.5rem; justify-content: center; margin-top: 1.25rem; }
+  .icsl__btn { width: 40px; height: 40px; border-radius: 999px; border: 1px solid var(--color-border); background: var(--color-background); color: var(--color-foreground); font-size: 1.3rem; line-height: 1; cursor: pointer; display: grid; place-items: center; }
+  .icsl__btn:hover { background: var(--color-surface); }
 {% endstylesheet %}
 
 {% javascript %}

@@ -1,0 +1,14 @@
+{
+  "id": "header-search",
+  "name": "Header — Search",
+  "category": "headers",
+  "description": "Utility header with a prominent centered search bar + account/cart.",
+  "target": ["header"],
+  "sectionType": "header-search",
+  "group": "header",
+  "slot": "core",
+  "coreGroup": "site-header",
+  "snippets": [],
+  "tags": ["header", "search", "utility", "marketplace"],
+  "preset": {}
+}

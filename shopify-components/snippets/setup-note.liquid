@@ -1,0 +1,14 @@
+{% comment %}
+  Setup hint — shown inside a section when it has no real store data yet, so the
+  preview renders sample/mock content PLUS a clear instruction of what the
+  merchant must create in Shopify (collection, menu, products…). Once they create
+  it and pick it, the real data replaces the mock automatically.
+  Usage: {% render 'setup-note', message: 'Create a collection and select it here.' %}
+  Styles live in assets/store.css (.setup-note) so this works in any section.
+{% endcomment %}
+{%- if message != blank -%}
+  <div class="setup-note" role="note">
+    <span class="setup-note__badge">Setup</span>
+    <span class="setup-note__msg">{{ message }}{% if action_url != blank %} <a class="setup-note__link" href="{{ action_url }}" target="_blank" rel="noopener">Open Shopify admin →</a>{% endif %}</span>
+  </div>
+{%- endif -%}

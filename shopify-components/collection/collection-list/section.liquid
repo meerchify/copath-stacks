@@ -1,3 +1,11 @@
+{%- liquid
+  assign linked = 0
+  for block in section.blocks
+    if block.settings.collection != blank
+      assign linked = linked | plus: 1
+    endif
+  endfor
+-%}
 <section class="section collection-list reveal">
   <div class="page-width">
     <header class="section__head">
@@ -6,6 +14,10 @@
         {%- if section.settings.heading != blank -%}<h2 class="section__title">{{ section.settings.heading }}</h2>{%- endif -%}
       </div>
     </header>
+
+    {%- if linked == 0 -%}
+      {% render 'setup-note', message: 'Showing sample categories. Create collections in Shopify (e.g. new-arrivals, best-sellers) and link each tile to one in this section.' %}
+    {%- endif -%}
 
     <div class="category-grid">
       {%- for block in section.blocks -%}

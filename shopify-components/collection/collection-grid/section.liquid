@@ -1,0 +1,45 @@
+{%- liquid
+  assign collection = collections[section.settings.collection]
+  if collection == empty or collection.products.size == 0
+    assign collection = collections['frontpage']
+  endif
+  assign limit = section.settings.products_to_show
+-%}
+<section class="section collection-grid reveal">
+  <div class="page-width">
+    {%- if section.settings.heading != blank -%}
+      <header class="section__head"><h2 class="section__title">{{ section.settings.heading }}</h2></header>
+    {%- endif -%}
+    {%- unless collection.products.size > 0 -%}
+      {% render 'setup-note', message: 'Showing sample products. Create a collection in Shopify and select it here (or name it "frontpage") to show real items.' %}
+    {%- endunless -%}
+    <div class="product-grid collection-grid__grid">
+      {%- if collection.products.size > 0 -%}
+        {%- for product in collection.products limit: limit -%}
+          {% render 'product-card', product: product %}
+        {%- endfor -%}
+      {%- else -%}
+        {%- for i in (1..limit) -%}{% render 'product-card' %}{%- endfor -%}
+      {%- endif -%}
+    </div>
+  </div>
+</section>
+
+{% stylesheet %}
+  .collection-grid__grid { grid-template-columns: repeat(4, 1fr); }
+  @media (max-width: 990px) { .collection-grid__grid { grid-template-columns: repeat(3, 1fr); } }
+  @media (max-width: 700px) { .collection-grid__grid { grid-template-columns: repeat(2, 1fr); } }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Collection grid",
+  "tag": "section",
+  "settings": [
+    { "type": "text", "id": "heading", "label": "Heading", "default": "All products" },
+    { "type": "collection", "id": "collection", "label": "Collection" },
+    { "type": "range", "id": "products_to_show", "min": 4, "max": 24, "step": 4, "label": "Products", "default": 12 }
+  ],
+  "presets": [ { "name": "Collection grid" } ]
+}
+{% endschema %}

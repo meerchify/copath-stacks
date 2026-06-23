@@ -1,0 +1,20 @@
+<div class="spacer" style="--spacer-h: {{ section.settings.height }}px;">
+  {%- if section.settings.show_divider -%}<hr class="spacer__rule">{%- endif -%}
+</div>
+
+{% stylesheet %}
+  .spacer { height: var(--spacer-h, 48px); display: flex; align-items: center; }
+  .spacer__rule { width: 100%; border: none; border-top: 1px solid var(--color-border); margin: 0; }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Spacer / Divider",
+  "tag": "section",
+  "settings": [
+    { "type": "range", "id": "height", "min": 0, "max": 200, "step": 4, "unit": "px", "label": "Height", "default": 48 },
+    { "type": "checkbox", "id": "show_divider", "label": "Show divider line", "default": false }
+  ],
+  "presets": [ { "name": "Spacer / Divider" } ]
+}
+{% endschema %}

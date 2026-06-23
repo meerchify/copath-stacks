@@ -1,0 +1,19 @@
+{
+  "id": "feature-rows",
+  "name": "Feature rows",
+  "category": "content",
+  "description": "Alternating image/text rows for telling a multi-part product or brand story.",
+  "target": ["index", "page", "product"],
+  "sectionType": "feature-rows",
+  "group": null,
+  "slot": "optional",
+  "snippets": [],
+  "tags": ["features", "story", "zigzag", "alternating"],
+  "preset": {
+    "blocks": {
+      "r1": { "type": "row", "settings": { "heading": "Made from premium materials" } },
+      "r2": { "type": "row", "settings": { "heading": "Built to last for years" } }
+    },
+    "block_order": ["r1", "r2"]
+  }
+}

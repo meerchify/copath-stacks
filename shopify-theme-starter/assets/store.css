@@ -133,3 +133,29 @@
   .js .reveal { opacity: 1; transform: none; transition: none; }
   * { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
 }
+
+/* Setup hint — shown when a section has no real store data yet (mock + instruction). */
+.setup-note {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin-bottom: 1.25rem;
+  padding: 0.7rem 0.9rem;
+  border: 1px dashed var(--color-border, #e3e3e3);
+  border-radius: var(--style-border-radius-cards, 12px);
+  background: color-mix(in srgb, var(--color-accent, #1a73e8) 6%, transparent);
+  font-size: 0.85rem;
+}
+.setup-note__badge {
+  flex: none;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  font-size: 0.65rem;
+  font-weight: 700;
+  padding: 0.15rem 0.45rem;
+  border-radius: 999px;
+  background: var(--color-accent, #1a73e8);
+  color: var(--color-on-accent, #fff);
+}
+.setup-note__msg { opacity: 0.85; }
+.setup-note__link { color: var(--color-accent, #1a73e8); font-weight: 600; white-space: nowrap; }

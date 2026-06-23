@@ -7,7 +7,7 @@
   "sectionType": "product-carousel",
   "group": null,
   "slot": "optional",
-  "snippets": ["product-card"],
+  "snippets": ["product-card", "setup-note"],
   "tags": ["products", "carousel", "slider", "scroll"],
   "preset": {}
 }

@@ -1,0 +1,13 @@
+{
+  "id": "hero-collage",
+  "name": "Hero — Collage",
+  "category": "heroes",
+  "description": "Typographic lead beside an offset two-image collage.",
+  "target": ["index", "page"],
+  "sectionType": "hero-collage",
+  "group": null,
+  "slot": "optional",
+  "snippets": [],
+  "tags": ["hero", "collage", "editorial", "lookbook", "v3"],
+  "preset": {}
+}

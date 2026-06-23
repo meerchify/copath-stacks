@@ -1,0 +1,13 @@
+{
+  "id": "spacer",
+  "name": "Spacer / Divider",
+  "category": "content",
+  "description": "Adjustable vertical spacing with an optional divider rule.",
+  "target": ["index", "page", "product", "collection"],
+  "sectionType": "spacer",
+  "group": null,
+  "slot": "optional",
+  "snippets": [],
+  "tags": ["spacer", "divider", "layout", "utility"],
+  "preset": {}
+}

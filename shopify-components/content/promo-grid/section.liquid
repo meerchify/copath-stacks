@@ -1,0 +1,64 @@
+<section class="section promo-grid reveal">
+  <div class="page-width">
+    {%- if section.settings.heading != blank -%}
+      <header class="section__head promo-grid__head"><h2 class="section__title">{{ section.settings.heading }}</h2></header>
+    {%- endif -%}
+    <div class="promo-grid__grid">
+      {%- for block in section.blocks -%}
+        {%- if block.settings.link != blank -%}<a class="promo-tile" href="{{ block.settings.link }}" {{ block.shopify_attributes }}>{%- else -%}<div class="promo-tile" {{ block.shopify_attributes }}>{%- endif -%}
+          <div class="promo-tile__media">
+            {%- if block.settings.image -%}
+              {{ block.settings.image | image_url: width: 1200 | image_tag: loading: 'lazy', class: 'promo-tile__img', widths: '400, 700, 1000, 1200', sizes: '(max-width: 700px) 100vw, 50vw' }}
+            {%- else -%}
+              {{ 'lifestyle-1' | placeholder_svg_tag: 'promo-tile__img placeholder' }}
+            {%- endif -%}
+          </div>
+          <div class="promo-tile__overlay">
+            {%- if block.settings.eyebrow != blank -%}<span class="promo-tile__eyebrow">{{ block.settings.eyebrow }}</span>{%- endif -%}
+            {%- if block.settings.heading != blank -%}<span class="promo-tile__title">{{ block.settings.heading }}</span>{%- endif -%}
+            {%- if block.settings.button_label != blank -%}<span class="promo-tile__cta">{{ block.settings.button_label }} →</span>{%- endif -%}
+          </div>
+        {%- if block.settings.link != blank -%}</a>{%- else -%}</div>{%- endif -%}
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+{% stylesheet %}
+  .promo-grid__grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: clamp(12px, 2vw, 20px); }
+  .promo-tile { position: relative; display: block; overflow: hidden; border-radius: var(--style-border-radius-cards, 12px); aspect-ratio: 3 / 2; color: #fff; text-decoration: none; background: var(--color-surface); }
+  .promo-tile__media { position: absolute; inset: 0; }
+  .promo-tile__img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s var(--ease-spring); }
+  .promo-tile:hover .promo-tile__img { transform: scale(1.05); }
+  .promo-tile::after { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, transparent 35%, rgba(0,0,0,0.6)); }
+  .promo-tile__overlay { position: absolute; inset: auto 0 0 0; z-index: 1; padding: clamp(16px, 2.5vw, 28px); display: flex; flex-direction: column; gap: 0.3rem; }
+  .promo-tile__eyebrow { text-transform: uppercase; letter-spacing: 0.1em; font-size: 0.72rem; opacity: 0.85; }
+  .promo-tile__title { font-family: var(--font-heading--family, var(--font-primary--family)); font-size: clamp(1.3rem, 2.5vw, 2rem); line-height: 1.05; letter-spacing: -0.02em; }
+  .promo-tile__cta { font-weight: 600; font-size: 0.9rem; margin-top: 0.3rem; }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Promo grid",
+  "tag": "section",
+  "settings": [
+    { "type": "text", "id": "heading", "label": "Heading" }
+  ],
+  "blocks": [
+    {
+      "type": "promo",
+      "name": "Promo tile",
+      "settings": [
+        { "type": "image_picker", "id": "image", "label": "Image" },
+        { "type": "text", "id": "eyebrow", "label": "Eyebrow" },
+        { "type": "text", "id": "heading", "label": "Heading", "default": "New season" },
+        { "type": "text", "id": "button_label", "label": "Button label", "default": "Shop" },
+        { "type": "url", "id": "link", "label": "Link" }
+      ]
+    }
+  ],
+  "presets": [
+    { "name": "Promo grid", "blocks": [ { "type": "promo" }, { "type": "promo" } ] }
+  ]
+}
+{% endschema %}

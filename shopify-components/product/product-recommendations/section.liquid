@@ -1,6 +1,12 @@
 {%- liquid
   assign limit = section.settings.products_to_show
   assign fallback = collections[section.settings.fallback_collection]
+  assign has_data = false
+  if recommendations.performed and recommendations.products_count > 0
+    assign has_data = true
+  elsif fallback.products.size > 0
+    assign has_data = true
+  endif
 -%}
 <section class="section prec reveal">
   <div class="page-width">
@@ -10,6 +16,9 @@
         {%- if section.settings.heading != blank -%}<h2 class="section__title">{{ section.settings.heading }}</h2>{%- endif -%}
       </div>
     </header>
+    {%- unless has_data -%}
+      {% render 'setup-note', message: 'Showing sample products. On a live product page Shopify fills this with real recommendations — or pick a fallback collection in this section.' %}
+    {%- endunless -%}
     <div class="product-grid">
       {%- if recommendations.performed and recommendations.products_count > 0 -%}
         {%- for product in recommendations.products limit: limit -%}

@@ -1,0 +1,13 @@
+{
+  "id": "collection-grid",
+  "name": "Collection grid",
+  "category": "collection",
+  "description": "Full product grid from a collection (more products than featured); mock + hint fallback.",
+  "target": ["index", "page", "collection"],
+  "sectionType": "collection-grid",
+  "group": null,
+  "slot": "optional",
+  "snippets": ["product-card", "setup-note"],
+  "tags": ["products", "grid", "collection", "shop-all"],
+  "preset": {}
+}

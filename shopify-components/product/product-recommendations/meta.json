@@ -7,7 +7,7 @@
   "sectionType": "product-recommendations",
   "group": null,
   "slot": "optional",
-  "snippets": ["product-card"],
+  "snippets": ["product-card", "setup-note"],
   "tags": ["products", "recommendations", "related", "upsell"],
   "preset": {}
 }

@@ -1,0 +1,13 @@
+{
+  "id": "blog-posts",
+  "name": "Blog posts",
+  "category": "content",
+  "description": "Latest articles from a blog as cards; mock + setup hint when no blog is linked.",
+  "target": ["index", "page"],
+  "sectionType": "blog-posts",
+  "group": null,
+  "slot": "optional",
+  "snippets": ["setup-note"],
+  "tags": ["blog", "articles", "journal", "content"],
+  "preset": {}
+}

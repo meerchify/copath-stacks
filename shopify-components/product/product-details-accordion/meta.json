@@ -1,0 +1,19 @@
+{
+  "id": "product-details-accordion",
+  "name": "Product details (accordion)",
+  "category": "product",
+  "description": "Expandable detail panels (description / shipping / returns) for the product page.",
+  "target": ["product", "page"],
+  "sectionType": "product-details-accordion",
+  "group": null,
+  "slot": "optional",
+  "snippets": [],
+  "tags": ["product", "pdp", "accordion", "tabs", "details"],
+  "preset": {
+    "blocks": {
+      "d1": { "type": "panel", "settings": { "title": "Details" } },
+      "d2": { "type": "panel", "settings": { "title": "Shipping & returns" } }
+    },
+    "block_order": ["d1", "d2"]
+  }
+}

@@ -7,7 +7,7 @@
   "sectionType": "featured-collection",
   "group": null,
   "slot": "optional",
-  "snippets": ["product-card"],
+  "snippets": ["product-card", "setup-note"],
   "tags": ["products", "grid", "shop"],
   "preset": {}
 }

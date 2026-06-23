@@ -1,0 +1,21 @@
+{
+  "id": "value-props-boxed",
+  "name": "Value props — Boxed",
+  "category": "content",
+  "description": "Trust/benefit blocks as bordered cards with icon circles (v2 layout).",
+  "target": ["index", "page"],
+  "sectionType": "value-props-boxed",
+  "group": null,
+  "slot": "optional",
+  "snippets": [],
+  "tags": ["trust", "benefits", "cards", "v2"],
+  "preset": {
+    "blocks": {
+      "v1": { "type": "item", "settings": { "icon": "🚚", "title": "Free shipping", "text": "On all orders over $50" } },
+      "v2": { "type": "item", "settings": { "icon": "↩", "title": "30-day returns", "text": "No questions asked" } },
+      "v3": { "type": "item", "settings": { "icon": "🛡", "title": "2-year warranty", "text": "On every product" } },
+      "v4": { "type": "item", "settings": { "icon": "🔒", "title": "Secure checkout", "text": "Powered by Shopify" } }
+    },
+    "block_order": ["v1", "v2", "v3", "v4"]
+  }
+}

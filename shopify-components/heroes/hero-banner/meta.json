@@ -1,0 +1,13 @@
+{
+  "id": "hero-banner",
+  "name": "Hero — Banner",
+  "category": "heroes",
+  "description": "Compact promo band: short height, image background, headline + inline CTA.",
+  "target": ["index", "page", "collection"],
+  "sectionType": "hero-banner",
+  "group": null,
+  "slot": "optional",
+  "snippets": [],
+  "tags": ["hero", "banner", "promo", "compact", "v2"],
+  "preset": {}
+}

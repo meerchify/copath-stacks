@@ -1,0 +1,20 @@
+{
+  "id": "steps",
+  "name": "Steps / How it works",
+  "category": "content",
+  "description": "Numbered step cards for onboarding, process or how-it-works sections.",
+  "target": ["index", "page", "product"],
+  "sectionType": "steps",
+  "group": null,
+  "slot": "optional",
+  "snippets": [],
+  "tags": ["steps", "how-it-works", "process", "onboarding"],
+  "preset": {
+    "blocks": {
+      "s1": { "type": "step", "settings": { "title": "Choose", "text": "Pick your favourite from the collection." } },
+      "s2": { "type": "step", "settings": { "title": "Customise", "text": "Select your size, colour and options." } },
+      "s3": { "type": "step", "settings": { "title": "Enjoy", "text": "Fast, tracked shipping to your door." } }
+    },
+    "block_order": ["s1", "s2", "s3"]
+  }
+}

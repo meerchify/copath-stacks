@@ -1,5 +1,8 @@
 {%- liquid
   assign collection = collections[section.settings.collection]
+  if collection == empty or collection.products.size == 0
+    assign collection = collections['frontpage']
+  endif
   assign limit = section.settings.products_to_show
 -%}
 <section class="section featured-collection reveal">
@@ -14,6 +17,9 @@
       {%- endif -%}
     </header>
 
+    {%- unless collection.products.size > 0 -%}
+      {% render 'setup-note', message: 'Showing sample products. Create a collection in Shopify and select it in this section (or name it "frontpage") to show real items.' %}
+    {%- endunless -%}
     <div class="product-grid">
       {%- if collection.products.size > 0 -%}
         {%- for product in collection.products limit: limit -%}

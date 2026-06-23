@@ -7,7 +7,7 @@
   "sectionType": "collection-list",
   "group": null,
   "slot": "optional",
-  "snippets": [],
+  "snippets": ["setup-note"],
   "tags": ["categories", "tiles", "navigation"],
   "preset": {
     "blocks": {
