@@ -1,13 +1,18 @@
 {% comment %}
-  Product main — media gallery + title + buy form (price, variants, add-to-cart).
-  Commerce logic lives in the shared snippets product-gallery + product-buy-form.
+  Product main — Gallery layout: all images stacked on the left, a sticky buy
+  column on the right. Reuses the shared product-buy-form snippet.
 {% endcomment %}
-<section class="pdp section" data-pdp>
-  <div class="page-width pdp__grid">
-    <div class="pdp__media">
-      {% render 'product-gallery' %}
+<section class="pdp pdp-gal section" data-pdp>
+  <div class="page-width pdp-gal__grid">
+    <div class="pdp-gal__media">
+      {%- for image in product.images -%}
+        {%- assign pg_loading = 'lazy' -%}{%- if forloop.first -%}{%- assign pg_loading = 'eager' -%}{%- endif -%}
+        {{ image | image_url: width: 1400 | image_tag: loading: pg_loading, class: 'pdp-gal__img', widths: '600, 900, 1200, 1400', sizes: '(max-width: 900px) 100vw, 55vw' }}
+      {%- else -%}
+        {{ 'product-1' | placeholder_svg_tag: 'pdp-gal__img placeholder' }}
+      {%- endfor -%}
     </div>
-    <div class="pdp__info">
+    <div class="pdp-gal__info">
       {%- if section.settings.show_vendor and product.vendor != blank -%}
         <p class="pdp__vendor">{{ product.vendor }}</p>
       {%- endif -%}
@@ -18,27 +23,18 @@
 </section>
 
 {% stylesheet %}
-  .pdp__grid { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(24px, 5vw, 64px); align-items: start; padding-block: clamp(24px, 4vw, 56px); }
+  .pdp-gal__grid { display: grid; grid-template-columns: 1.4fr 1fr; gap: clamp(24px, 5vw, 72px); align-items: start; padding-block: clamp(24px, 4vw, 56px); }
+  .pdp-gal__media { display: flex; flex-direction: column; gap: clamp(8px, 1.5vw, 16px); }
+  .pdp-gal__img { width: 100%; border-radius: var(--style-border-radius-cards, 12px); background: var(--color-surface); object-fit: cover; }
+  .pdp-gal__info { position: sticky; top: 6rem; }
   .pdp__vendor { text-transform: uppercase; letter-spacing: 0.1em; font-size: 0.78rem; opacity: 0.6; margin-bottom: 0.4rem; }
   .pdp__title { font-family: var(--font-heading--family, var(--font-primary--family)); font-size: clamp(1.8rem, 3.5vw, 2.75rem); line-height: 1.08; letter-spacing: -0.02em; }
-  @media (max-width: 850px) { .pdp__grid { grid-template-columns: 1fr; } }
+  @media (max-width: 850px) { .pdp-gal__grid { grid-template-columns: 1fr; } .pdp-gal__info { position: static; } }
 {% endstylesheet %}
 
 {% javascript %}
   (function () {
     document.querySelectorAll('[data-pdp]').forEach(function (root) {
-      // Gallery: swap the main image on thumbnail click.
-      var main = root.querySelector('.pgal__main img');
-      root.querySelectorAll('[data-thumb]').forEach(function (t) {
-        t.addEventListener('click', function () {
-          var full = t.getAttribute('data-full');
-          if (main && full) { main.setAttribute('src', full); main.removeAttribute('srcset'); }
-          root.querySelectorAll('[data-thumb]').forEach(function (x) { x.classList.remove('is-active'); });
-          t.classList.add('is-active');
-        });
-      });
-
-      // Variants: switch price / availability / hidden id on option change.
       var script = root.querySelector('[data-variants]');
       if (!script) return;
       var variants;
@@ -70,7 +66,7 @@
 
 {% schema %}
 {
-  "name": "Product",
+  "name": "Product — Gallery",
   "tag": "section",
   "settings": [
     { "type": "checkbox", "id": "show_vendor", "label": "Show vendor", "default": false }

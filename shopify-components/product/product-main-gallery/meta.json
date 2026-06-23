@@ -1,0 +1,14 @@
+{
+  "id": "product-main-gallery",
+  "name": "Product — Gallery",
+  "category": "product",
+  "description": "Stacked image gallery on the left with a sticky buy column on the right.",
+  "target": ["product"],
+  "sectionType": "product-main-gallery",
+  "group": null,
+  "slot": "core",
+  "coreGroup": "product-main",
+  "snippets": ["product-buy-form"],
+  "tags": ["product", "pdp", "gallery", "sticky", "editorial"],
+  "preset": {}
+}

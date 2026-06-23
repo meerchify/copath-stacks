@@ -1,0 +1,14 @@
+{
+  "id": "product-main",
+  "name": "Product — Classic",
+  "category": "product",
+  "description": "Two-column PDP: image gallery with thumbnails + title, price, variant picker, add-to-cart.",
+  "target": ["product"],
+  "sectionType": "product",
+  "group": null,
+  "slot": "core",
+  "coreGroup": "product-main",
+  "snippets": ["product-gallery", "product-buy-form"],
+  "tags": ["product", "pdp", "gallery", "add-to-cart", "variants"],
+  "preset": {}
+}
